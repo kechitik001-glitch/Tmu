@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browse serious singles on FIND TRUE LOVE — Black & White dating for adults 18+." />
+  <title>Browse | FIND TRUE LOVE</title>
+
+  <style>
+    :root {
+      --brand-1: #ff4d6d;
+      --brand-2: #e94560;
+      --brand-3: #c73e54;
+      --accent-1: #ff8fa3;
+      --accent-2: #ffb3c1;
+      --ink: #1a1a2e;
+      --ink-soft: #b8b8c8;
+      --line: #2a2a3e;
+      --radius-sm: 10px;
+      --radius-lg: 20px;
+      --transition: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      min-height: 100vh;
+      color: #fff;
+      line-height: 1.55;
+      overflow-x: hidden;
+      background: linear-gradient(-45deg, #1a1a2e, #16213e, #2a1a3e, #1a1a2e);
+      background-size: 400% 400%;
+      animation: bgShift 20s ease infinite;
+      padding-bottom: 40px;
+    }
+
+    @keyframes bgShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(233, 69, 96, 0.18), transparent 45%),
+        radial-gradient(circle at 80% 80%, rgba(255, 143, 163, 0.12), transparent 45%);
+      opacity: 0.9;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .heart {
+      position: absolute;
+      bottom: -60px;
+      font-size: 18px;
+      color: rgba(255, 143, 163, 0.5);
+      animation: floatUp linear infinite;
+      filter: drop-shadow(0 0 8px rgba(233, 69, 96, 0.5));
+      user-select: none;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: translateY(-110vh) rotate(360deg) scale(1.2); opacity: 0; }
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 14px 20px;
+      background: rgba(26, 26, 46, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .topbar .logo {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--brand-2), var(--brand-1) 50%, var(--accent-1));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+    }
+    .topbar .actions { display: flex; gap: 8px; }
+    .topbar .actions button {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+    .topbar .actions button:hover {
+      background: rgba(233, 69, 96, 0.18);
+      border-color: rgba(233, 69, 96, 0.4);
+    }
+    .topbar .actions button:active { transform: scale(0.95); }
+
+    .feed {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 22px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+
+    .profile-card {
+      position: relative;
+      background: rgba(34, 34, 58, 0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+      transition: transform 0.3s var(--transition), opacity 0.4s var(--transition);
+      animation: cardIn 0.5s var(--transition) both;
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .profile-card.removed {
+      transform: scale(0.9) translateY(10px);
+      opacity: 0;
+      height: 0;
+      margin: 0;
+      overflow: hidden;
+      transition: all 0.35s ease;
+    }
+
+    .profile-photo {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      overflow: hidden;
+      cursor: pointer;
+      background: linear-gradient(135deg, #2a2a3e, #1a1a2e);
+    }
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .profile-photo:hover img { transform: scale(1.04); }
+
+    .profile-photo .fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 100px;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.22);
+      background: linear-gradient(135deg, #e94560, #6a1b3a);
+      letter-spacing: 3px;
+    }
+    .profile-photo.no-img .fallback { display: flex; }
+    .profile-photo.no-img img { display: none; }
+
+    .profile-photo .photo-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 80px 22px 22px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.92));
+      pointer-events: none;
+    }
+    .profile-photo .photo-overlay h2 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 4px;
+      letter-spacing: -0.4px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+    }
+    .profile-photo .photo-overlay h2 span { font-weight: 400; opacity: 0.9; }
+    .profile-photo .photo-overlay .location {
+      font-size: 14px;
+      opacity: 0.92;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+    }
+    .profile-photo .photo-overlay .location::before { content: "📍"; font-size: 12px; }
+
+    .profile-photo .tap-hint {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      font-size: 10.5px;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 7px 12px;
+      border-radius: 20px;
+      opacity: 0.9;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .profile-photo .online-dot {
+      position: absolute;
+      top: 16px; left: 16px;
+      background: rgba(76, 217, 100, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(76, 217, 100, 0.4);
+      color: #4cd964;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .profile-photo .online-dot::before {
+      content: "";
+      width: 7px; height: 7px;
+      background: #4cd964;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #4cd964;
+      animation: dotPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .profile-body { padding: 20px 22px 22px; }
+    .profile-body .bio {
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: #d4d4e0;
+      margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .profile-body .quick-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .profile-body .tag {
+      background: rgba(255, 255, 255, 0.06);
+      color: #d4d4e0;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 6px 11px;
+      border-radius: 14px;
+      letter-spacing: 0.3px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .profile-body .tag.highlight {
+      background: linear-gradient(135deg, rgba(255, 77, 109, 0.22), rgba(255, 143, 163, 0.12));
+      color: #ff8ba0;
+      border-color: rgba(255, 77, 109, 0.3);
+      font-weight: 700;
+    }
+
+    .card-actions { display: flex; gap: 10px; }
+    .card-actions button {
+      flex: 1;
+      padding: 14px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s var(--transition), background 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .card-actions button:active { transform: scale(0.96); }
+    .card-actions .pass {
+      background: transparent;
+      color: #ff3b30;
+      border: 1.5px solid rgba(255, 59, 48, 0.5);
+    }
+    .card-actions .pass:hover {
+      background: rgba(255, 59, 48, 0.15);
+      border-color: #ff3b30;
+    }
+    .card-actions .msg {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border: 1.5px solid rgba(255, 255, 255, 0.1);
+    }
+    .card-actions .msg:hover { background: rgba(255, 255, 255, 0.14); }
+    .card-actions .like {
+      background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(233, 69, 96, 0.4);
+    }
+    .card-actions .like:hover {
+      background: linear-gradient(135deg, var(--brand-2), var(--brand-3));
+      box-shadow: 0 10px 28px rgba(233, 69, 96, 0.55);
+    }
+
+    .feed-end {
+      text-align: center;
+      padding: 60px 20px;
+      color: #888;
+    }
+    .feed-end h2 { color: #fff; font-size: 20px; margin-bottom: 8px; }
+    .feed-end p { font-size: 14px; }
+
+    .profile-overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(-45deg, #1a1a2e, #16213e, #2a1a3e, #1a1a2e);
+      background-size: 400% 400%;
+      animation: bgShift 20s ease infinite;
+      z-index: 250;
+      display: none;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .profile-overlay.show { display: flex; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .profile-hero {
+      position: relative;
+      width: 100%;
+      height: 65vh;
+      min-height: 400px;
+      overflow: hidden;
+      background: #2a2a3e;
+    }
+    .profile-hero img { width: 100%; height: 100%; object-fit: cover; }
+    .profile-hero .close-btn {
+      position: absolute;
+      top: 20px; left: 20px;
+      width: 44px; height: 44px;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .profile-hero .close-btn:hover {
+      background: rgba(233, 69, 96, 0.85);
+      transform: scale(1.05);
+    }
+
+    .profile-detail {
+      padding: 26px 24px 60px;
+      max-width: 620px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .profile-detail h2 {
+      font-size: 30px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      letter-spacing: -0.4px;
+    }
+    .profile-detail h2 span { font-weight: 400; opacity: 0.8; }
+    .profile-detail .location {
+      font-size: 15px;
+      color: #cfd3e0;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .profile-detail .location::before { content: "📍"; font-size: 13px; }
+    .profile-detail .section-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--brand-1);
+      font-weight: 800;
+      margin-bottom: 12px;
+      margin-top: 26px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .profile-detail .section-label::before {
+      content: "";
+      width: 4px;
+      height: 14px;
+      background: linear-gradient(var(--brand-1), var(--accent-1));
+      border-radius: 3px;
+    }
+    .profile-detail .section-label:first-of-type { margin-top: 0; }
+
+    .profile-detail .about {
+      font-size: 15.5px;
+      line-height: 1.6;
+      color: #e8eaf0;
+    }
+
+    .profile-detail .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .profile-detail .tags .tag {
+      background: rgba(255, 255, 255, 0.06);
+      color: #e8eaf0;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .profile-detail .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 18px;
+      border-radius: 14px;
+    }
+    .profile-detail .info-item .k {
+      font-size: 10.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+    .profile-detail .info-item .v {
+      font-size: 14.5px;
+      color: #e8eaf0;
+      font-weight: 600;
+    }
+    .profile-detail .info-item.full { grid-column: 1 / -1; }
+
+    .profile-detail .cta-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 32px;
+      position: sticky;
+      bottom: 12px;
+    }
+    .profile-detail .cta-btn {
+      flex: 1;
+      padding: 15px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s, background 0.2s, box-shadow 0.2s;
+    }
+    .profile-detail .cta-btn:active { transform: scale(0.97); }
+    .profile-detail .cta-btn.pass {
+      background: transparent;
+      color: #ff3b30;
+      border: 1.5px solid rgba(255, 59, 48, 0.5);
+    }
+    .profile-detail .cta-btn.pass:hover { background: rgba(255, 59, 48, 0.18); }
+    .profile-detail .cta-btn.msg {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border: 1.5px solid rgba(255, 255, 255, 0.1);
+    }
+    .profile-detail .cta-btn.msg:hover { background: rgba(255, 255, 255, 0.14); }
+    .profile-detail .cta-btn.like {
+      background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(233, 69, 96, 0.4);
+    }
+    .profile-detail .cta-btn.like:hover {
+      box-shadow: 0 10px 28px rgba(233, 69, 96, 0.55);
+    }
+
+    .match-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(233, 69, 96, 0.35), rgba(26, 26, 46, 0.97) 60%);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 300;
+      text-align: center;
+      padding: 30px;
+    }
+    .match-overlay.show { display: flex; animation: matchIn 0.5s var(--transition); }
+    @keyframes matchIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .match-overlay .m-icon {
+      font-size: 64px;
+      margin-bottom: 8px;
+      animation: popIn 0.6s var(--transition) both, pulse 2s ease-in-out infinite 0.6s;
+    }
+    @keyframes popIn {
+      0% { transform: scale(0); }
+      60% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+    .match-overlay h1 {
+      font-size: 42px;
+      color: var(--brand-1);
+      letter-spacing: 4px;
+      font-weight: 900;
+      margin-bottom: 12px;
+      text-shadow: 0 4px 20px rgba(233, 69, 96, 0.6);
+    }
+    .match-overlay p {
+      font-size: 16px;
+      color: #cfd3e0;
+      margin-bottom: 30px;
+    }
+    .match-overlay p span { color: var(--brand-1); font-weight: 800; }
+    .match-overlay .btn {
+      padding: 14px 36px;
+      background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      margin: 6px;
+      box-shadow: 0 12px 30px rgba(233, 69, 96, 0.5);
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .match-overlay .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(233, 69, 96, 0.65);
+    }
+    .match-overlay .btn.secondary {
+      background: transparent;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      box-shadow: none;
+    }
+    .match-overlay .btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: none;
+    }
+
+    .chat-screen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(-45deg, #1a1a2e, #16213e, #2a1a3e, #1a1a2e);
+      background-size: 400% 400%;
+      animation: bgShift 20s ease infinite;
+      z-index: 350;
+      display: none;
+      flex-direction: column;
+    }
+    .chat-screen.show { display: flex; }
+
+    .chat-header {
+      padding: 16px 20px;
+      background: rgba(22, 33, 62, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .chat-header .back {
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--brand-1);
+      transition: transform 0.2s;
+      user-select: none;
+    }
+    .chat-header .back:hover { transform: translateX(-3px); }
+    .chat-header .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(233, 69, 96, 0.5);
+    }
+    .chat-header .info { flex: 1; min-width: 0; }
+    .chat-header .name {
+      font-size: 16px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .chat-header .status {
+      font-size: 12px;
+      color: #4cd964;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .chat-header .status::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: #4cd964;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #4cd964;
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 22px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 700px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .chat-messages::-webkit-scrollbar { width: 6px; }
+    .chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: rgba(255, 143, 163, 0.3);
+      border-radius: 6px;
+    }
+
+    .chat-empty {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      text-align: center;
+      padding: 40px 20px;
+      gap: 10px;
+    }
+    .chat-empty .icon { font-size: 44px; opacity: 0.6; }
+    .chat-empty h3 { color: #cfd3e0; font-size: 18px; font-weight: 700; }
+    .chat-empty p { font-size: 13.5px; max-width: 300px; }
+
+    .msg {
+      max-width: 78%;
+      padding: 11px 16px;
+      border-radius: 20px;
+      font-size: 15px;
+      line-height: 1.45;
+      word-wrap: break-word;
+      animation: msgIn 0.3s var(--transition) both;
+    }
+    @keyframes msgIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .msg.me {
+      background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 6px;
+      box-shadow: 0 4px 14px rgba(233, 69, 96, 0.28);
+    }
+
+    .chat-input {
+      padding: 12px 16px 16px;
+      background: rgba(22, 33, 62, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      max-width: 700px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 13px 18px;
+      border-radius: 24px;
+      border: 1.5px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .chat-input input::placeholder { color: #888; }
+    .chat-input input:focus {
+      border-color: rgba(233, 69, 96, 0.6);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .chat-input button {
+      padding: 0 22px;
+      height: 46px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+      color: #fff;
+      border: none;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .chat-input button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(233, 69, 96, 0.55);
+    }
+    .chat-input button:active { transform: scale(0.97); }
+
+    @media (max-width: 560px) {
+      .profile-photo { height: 420px; }
+      .profile-photo .photo-overlay h2 { font-size: 24px; }
+      .feed { padding: 16px 12px; gap: 22px; }
+      .profile-body { padding: 16px 18px 18px; }
+      .card-actions button { padding: 13px 6px; font-size: 13px; }
+      .profile-detail { padding: 22px 18px 60px; }
+      .profile-detail h2 { font-size: 26px; }
+      .profile-detail .info-grid { padding: 14px; gap: 12px; }
+      .topbar .actions button { padding: 7px 11px; font-size: 11px; }
+      .match-overlay h1 { font-size: 32px; letter-spacing: 2px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      body { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hearts" aria-hidden="true" id="hearts"></div>
+
+  <header class="topbar">
+    <div class="logo">FIND TRUE LOVE</div>
+    <div class="actions">
+      <button onclick="scrollToTop()">Top</button>
+      <button onclick="location.href='index.html'">Sign out</button>
+    </div>
+  </header>
+
+  <main class="feed" id="feed"></main>
+
+  <div class="profile-overlay" id="profileOverlay">
+    <div class="profile-hero">
+      <img id="detailImg" src="" alt="">
+      <div class="close-btn" onclick="closeProfile()">&#8592;</div>
+    </div>
+    <div class="profile-detail">
+      <h2 id="detailName">Name, <span id="detailAge">00</span></h2>
+      <p class="location" id="detailLocation">Location</p>
+
+      <p class="section-label">About</p>
+      <p class="about" id="detailBio">Bio</p>
+
+      <p class="section-label">Interests</p>
+      <div class="tags" id="detailInterests"></div>
+
+      <p class="section-label">Looking For</p>
+      <div class="info-grid">
+        <div class="info-item"><div class="k">Seeking</div><div class="v" id="detailLooking">—</div></div>
+        <div class="info-item"><div class="k">Relationship</div><div class="v" id="detailRelationship">—</div></div>
+        <div class="info-item"><div class="k">First Date</div><div class="v" id="detailFirstDate">—</div></div>
+        <div class="info-item"><div class="k">Love Language</div><div class="v" id="detailLoveLanguage">—</div></div>
+      </div>
+
+      <p class="section-label">Work &amp; Education</p>
+      <div class="info-grid">
+        <div class="info-item"><div class="k">Occupation</div><div class="v" id="detailWork">—</div></div>
+        <div class="info-item"><div class="k">Industry</div><div class="v" id="detailIndustry">—</div></div>
+        <div class="info-item"><div class="k">Education</div><div class="v" id="detailEducation">—</div></div>
+        <div class="info-item"><div class="k">Income</div><div class="v" id="detailIncome">—</div></div>
+      </div>
+
+      <p class="section-label">About Me</p>
+      <div class="info-grid">
+        <div class="info-item"><div class="k">Height</div><div class="v" id="detailHeight">—</div></div>
+        <div class="info-item"><div class="k">Body Type</div><div class="v" id="detailBodyType">—</div></div>
+        <div class="info-item"><div class="k">Hometown</div><div class="v" id="detailHometown">—</div></div>
+        <div class="info-item"><div class="k">Zodiac</div><div class="v" id="detailZodiac">—</div></div>
+        <div class="info-item"><div class="k">Religion</div><div class="v" id="detailReligion">—</div></div>
+        <div class="info-item"><div class="k">Languages</div><div class="v" id="detailLanguages">—</div></div>
+        <div class="info-item"><div class="k">Children</div><div class="v" id="detailChildren">—</div></div>
+        <div class="info-item"><div class="k">Pets</div><div class="v" id="detailPets">—</div></div>
+      </div>
+
+      <p class="section-label">Lifestyle</p>
+      <div class="info-grid">
+        <div class="info-item"><div class="k">Smoking</div><div class="v" id="detailSmoking">—</div></div>
+        <div class="info-item"><div class="k">Drinking</div><div class="v" id="detailDrinking">—</div></div>
+        <div class="info-item"><div class="k">Has Car</div><div class="v" id="detailCar">—</div></div>
+        <div class="info-item"><div class="k">Relocate</div><div class="v" id="detailRelocate">—</div></div>
+      </div>
+
+      <p class="section-label">Personality &amp; Favourites</p>
+      <div class="info-grid">
+        <div class="info-item full"><div class="k">Personality</div><div class="v" id="detailPersonality">—</div></div>
+        <div class="info-item"><div class="k">Weekend</div><div class="v" id="detailWeekend">—</div></div>
+        <div class="info-item"><div class="k">Music</div><div class="v" id="detailMusic">—</div></div>
+        <div class="info-item full"><div class="k">Favourite Food</div><div class="v" id="detailFood">—</div></div>
+      </div>
+
+      <div class="cta-row">
+        <button class="cta-btn pass" onclick="detailAction('pass')">Pass</button>
+        <button class="cta-btn msg" onclick="detailAction('msg')">Message</button>
+        <button class="cta-btn like" onclick="detailAction('like')">Like</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="match-overlay" id="matchOverlay">
+    <div class="m-icon">💕</div>
+    <h1>IT'S A MATCH!</h1>
+    <p>You and <span id="matchName">someone</span> liked each other.</p>
+    <button class="btn" onclick="openChatFromMatch()">Send a Message</button>
+    <button class="btn secondary" onclick="closeMatch()">Keep Browsing</button>
+  </div>
+
+  <div class="chat-screen" id="chatScreen">
+    <div class="chat-header">
+      <div class="back" onclick="closeChat()">&#8592;</div>
+      <img id="chatAvatar" class="avatar" src="" alt="">
+      <div class="info">
+        <div class="name" id="chatName">Chat</div>
+        <div class="status">Online</div>
+      </div>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-empty" id="chatEmpty">
+        <div class="icon">💬</div>
+        <h3>Start the conversation</h3>
+        <p>Say hello — a real connection starts with a real message.</p>
+      </div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chatInput" placeholder="Type a message..."
+             onkeydown="if(event.key==='Enter')sendMessage()" autocomplete="off">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      (function spawnHearts() {
+        const container = document.getElementById('hearts');
+        const symbols = ['❤', '♥', '❤', '💕', '❤'];
+        const count = window.innerWidth < 560 ? 8 : 14;
+        for (let i = 0; i < count; i++) {
+          const h = document.createElement('span');
+          h.className = 'heart';
+          h.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+          h.style.left = Math.random() * 100 + '%';
+          h.style.fontSize = (12 + Math.random() * 20) + 'px';
+          h.style.animationDuration = (12 + Math.random() * 14) + 's';
+          h.style.animationDelay = (Math.random() * 12) + 's';
+          h.style.opacity = 0.3 + Math.random() * 0.4;
+          container.appendChild(h);
+        }
+      })();
+
+      const profiles = [
+        { name: "Amara", age: 27, location: "Nairobi, Kenya",
+          bio: "Marketing manager with a weakness for good coffee and long hikes. I laugh easily and love deeply. Looking for someone who's ready for something real.",
+          img: "https://i.pravatar.cc/600?img=1",
+          interests: ["Hiking", "Coffee", "Photography", "Travel"],
+          looking: "A serious man", relationship: "Long-term", work: "Marketing Manager", industry: "Marketing",
+          education: "Bachelor's", languages: "English, Swahili", religion: "Christian",
+          height: "5'6\" (168cm)", children: "None", hometown: "Nakuru, Kenya",
+          bodyType: "Athletic", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Libra", income: "Middle", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Coffee and a walk in the park", personality: "Warm, curious, direct",
+          loveLanguage: "Quality time", weekend: "Hiking or slow brunch",
+          music: "Afrobeats, Soul, Jazz", food: "Kenyan, Italian, Thai" },
+
+        { name: "Zara", age: 24, location: "Lagos, Nigeria",
+          bio: "Creative soul — music, art, and food are my love languages. Warm, playful, and done with games.",
+          img: "https://i.pravatar.cc/600?img=5",
+          interests: ["Music", "Art", "Cooking", "Dancing"],
+          looking: "Something real", relationship: "Long-term", work: "Graphic Designer", industry: "Creative",
+          education: "Bachelor's", languages: "English, Yoruba", religion: "Christian",
+          height: "5'5\" (165cm)", children: "None", hometown: "Ibadan, Nigeria",
+          bodyType: "Slim", smoking: "Never", drinking: "Socially", pets: "Cat lover",
+          zodiac: "Gemini", income: "Middle", hasCar: "No", relocate: "Yes",
+          firstDate: "Art gallery then street food", personality: "Playful, creative, honest",
+          loveLanguage: "Words of affirmation", weekend: "Music, friends, cooking",
+          music: "Afrobeats, R&B, Alté", food: "Nigerian, Japanese, Italian" },
+
+        { name: "Nia", age: 26, location: "Accra, Ghana",
+          bio: "Nurse by day, dancer by night. Big smile, bigger heart. Looking for a kind man who knows what he wants.",
+          img: "https://i.pravatar.cc/600?img=9",
+          interests: ["Dancing", "Fitness", "Reading", "Church"],
+          looking: "A kind man", relationship: "Marriage", work: "Nurse", industry: "Healthcare",
+          education: "Bachelor's", languages: "English, Twi", religion: "Christian",
+          height: "5'4\" (163cm)", children: "None", hometown: "Kumasi, Ghana",
+          bodyType: "Athletic", smoking: "Never", drinking: "Never", pets: "No pets",
+          zodiac: "Taurus", income: "Middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Dinner and dancing", personality: "Warm, energetic, faithful",
+          loveLanguage: "Acts of service", weekend: "Church, family, dance class",
+          music: "Gospel, Highlife, Afrobeats", food: "Ghanaian, Continental" },
+
+        { name: "Fatima", age: 34, location: "Dakar, Senegal",
+          bio: "Teacher and mum of one. Elegant, grounded, honest. I'm here for something lasting.",
+          img: "https://i.pravatar.cc/600?img=10",
+          interests: ["Reading", "Cooking", "Travel", "Family"],
+          looking: "A serious partner", relationship: "Marriage", work: "Teacher", industry: "Education",
+          education: "Master's", languages: "French, English, Wolof", religion: "Muslim",
+          height: "5'7\" (170cm)", children: "1 child", hometown: "Saint-Louis, Senegal",
+          bodyType: "Slim", smoking: "Never", drinking: "Never", pets: "No pets",
+          zodiac: "Virgo", income: "Middle", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "A quiet dinner by the sea", personality: "Elegant, calm, devoted",
+          loveLanguage: "Quality time", weekend: "Family, cooking, reading",
+          music: "Mbalax, French pop", food: "Senegalese, French, Lebanese" },
+
+        { name: "Grace", age: 41, location: "Kampala, Uganda",
+          bio: "Banker. Independent, warm, family-first. I've built a good life — now I want someone to share it with.",
+          img: "https://i.pravatar.cc/600?img=16",
+          interests: ["Travel", "Wine", "Hiking", "Church"],
+          looking: "A life partner", relationship: "Marriage", work: "Banker", industry: "Finance",
+          education: "MBA", languages: "English, Luganda", religion: "Christian",
+          height: "5'6\" (168cm)", children: "2 children", hometown: "Entebbe, Uganda",
+          bodyType: "Average", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Capricorn", income: "Upper-middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Wine bar and good conversation", personality: "Confident, grounded, loyal",
+          loveLanguage: "Acts of service", weekend: "Family brunch and travel planning",
+          music: "Soul, Jazz, Gospel", food: "Ugandan, Italian, Indian" },
+
+        { name: "Aisha", age: 47, location: "Mombasa, Kenya",
+          bio: "Business owner. Confident, caring, still hopeful. I love the ocean, good conversation, and a man who keeps his word.",
+          img: "https://i.pravatar.cc/600?img=20",
+          interests: ["Ocean", "Business", "Cooking", "Travel"],
+          looking: "A genuine man", relationship: "Long-term", work: "Business Owner", industry: "Retail",
+          education: "Bachelor's", languages: "English, Swahili", religion: "Muslim",
+          height: "5'5\" (165cm)", children: "3 children", hometown: "Malindi, Kenya",
+          bodyType: "Curvy", smoking: "Never", drinking: "Never", pets: "Cat lover",
+          zodiac: "Pisces", income: "Upper-middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Seafood by the ocean", personality: "Confident, caring, honest",
+          loveLanguage: "Words of affirmation", weekend: "Ocean, family, business",
+          music: "Taarab, Soul", food: "Swahili, Indian, Seafood" },
+
+        { name: "Ruth", age: 55, location: "Nairobi, Kenya",
+          bio: "Retired teacher, grandmother of three, young at heart. I still dress well, still laugh loud, still believe in love.",
+          img: "https://i.pravatar.cc/600?img=23",
+          interests: ["Gardening", "Church", "Family", "Reading"],
+          looking: "A kind companion", relationship: "Companionship", work: "Retired Teacher", industry: "Education",
+          education: "Bachelor's", languages: "English, Swahili", religion: "Christian",
+          height: "5'4\" (163cm)", children: "3 children", hometown: "Nyeri, Kenya",
+          bodyType: "Average", smoking: "Never", drinking: "Never", pets: "No pets",
+          zodiac: "Cancer", income: "Middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Tea and a long walk", personality: "Warm, wise, joyful",
+          loveLanguage: "Quality time", weekend: "Church, grandchildren, gardening",
+          music: "Gospel, Oldies", food: "Kenyan, Continental" },
+
+        { name: "Esther", age: 58, location: "Abuja, Nigeria",
+          bio: "Widow, businesswoman, mother of four. I've lived, loved, and lost — and I'm ready to love again.",
+          img: "https://i.pravatar.cc/600?img=24",
+          interests: ["Business", "Church", "Cooking", "Family"],
+          looking: "A good man", relationship: "Companionship", work: "Businesswoman", industry: "Trade",
+          education: "Bachelor's", languages: "English, Igbo", religion: "Christian",
+          height: "5'3\" (160cm)", children: "4 children", hometown: "Enugu, Nigeria",
+          bodyType: "Average", smoking: "Never", drinking: "Never", pets: "No pets",
+          zodiac: "Leo", income: "Upper-middle", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Dinner and church on Sunday", personality: "Strong, warm, faithful",
+          loveLanguage: "Acts of service", weekend: "Church, family, business",
+          music: "Gospel, Highlife", food: "Nigerian, Continental" },
+
+        { name: "Linda", age: 36, location: "Nairobi, Kenya",
+          bio: "HR manager. I love cooking, road trips, and conversations that go past midnight. Looking for depth, not drama.",
+          img: "https://i.pravatar.cc/600?img=25",
+          interests: ["Cooking", "Road Trips", "Movies", "Conversation"],
+          looking: "Something deep", relationship: "Long-term", work: "HR Manager", industry: "Corporate",
+          education: "Bachelor's", languages: "English, Swahili", religion: "Christian",
+          height: "5'6\" (168cm)", children: "None", hometown: "Nairobi, Kenya",
+          bodyType: "Slim", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Scorpio", income: "Upper-middle", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Road trip with good music", personality: "Warm, curious, loyal",
+          loveLanguage: "Quality time", weekend: "Cooking, movies, road trips",
+          music: "R&B, Afro-soul", food: "Kenyan, Thai, Italian" },
+
+        { name: "Margaret", age: 70, location: "London, UK",
+          bio: "Retired nurse, widow, still full of life. I want a gentleman who can keep up with my stories and my travels.",
+          img: "https://i.pravatar.cc/600?img=26",
+          interests: ["Travel", "Theatre", "Reading", "Grandchildren"],
+          looking: "A gentleman", relationship: "Companionship", work: "Retired Nurse", industry: "Healthcare",
+          education: "Diploma", languages: "English", religion: "Christian",
+          height: "5'2\" (157cm)", children: "2 children", hometown: "Bristol, UK",
+          bodyType: "Petite", smoking: "Never", drinking: "Occasionally", pets: "Cat lover",
+          zodiac: "Aquarius", income: "Middle", hasCar: "No", relocate: "No",
+          firstDate: "Afternoon tea and theatre", personality: "Warm, witty, independent",
+          loveLanguage: "Quality time", weekend: "Theatre, walks, grandchildren",
+          music: "Classical, Oldies", food: "British, French" },
+
+        { name: "Adaeze", age: 29, location: "Enugu, Nigeria",
+          bio: "Pharmacist. Quiet, thoughtful, serious about love. I'd rather have one real thing than ten shallow ones.",
+          img: "https://i.pravatar.cc/600?img=27",
+          interests: ["Reading", "Cooking", "Church", "Fitness"],
+          looking: "A serious man", relationship: "Marriage", work: "Pharmacist", industry: "Healthcare",
+          education: "Doctorate", languages: "English, Igbo", religion: "Christian",
+          height: "5'5\" (165cm)", children: "None", hometown: "Onitsha, Nigeria",
+          bodyType: "Slim", smoking: "Never", drinking: "Never", pets: "No pets",
+          zodiac: "Pisces", income: "Middle", hasCar: "Yes", relocate: "Yes",
+          firstDate: "Dinner and a long walk", personality: "Quiet, thoughtful, loyal",
+          loveLanguage: "Words of affirmation", weekend: "Church, cooking, reading",
+          music: "Gospel, Soul", food: "Nigerian, Italian" },
+
+        { name: "Wanjiru", age: 32, location: "Nakuru, Kenya",
+          bio: "Agribusiness owner. I love the outdoors and honest people. Make me laugh and you're halfway there.",
+          img: "https://i.pravatar.cc/600?img=28",
+          interests: ["Farming", "Hiking", "Horses", "Outdoors"],
+          looking: "An honest man", relationship: "Long-term", work: "Agribusiness Owner", industry: "Agriculture",
+          education: "Bachelor's", languages: "English, Swahili, Kikuyu", religion: "Christian",
+          height: "5'7\" (170cm)", children: "None", hometown: "Nyeri, Kenya",
+          bodyType: "Athletic", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Aries", income: "Middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Hiking then farm-to-table meal", personality: "Bold, honest, adventurous",
+          loveLanguage: "Acts of service", weekend: "Farm work and hiking",
+          music: "Afrobeats, Country", food: "Kenyan, Grilled everything" },
+
+        { name: "Thandi", age: 38, location: "Johannesburg, SA",
+          bio: "Journalist. Curious, warm, looking for depth. I ask a lot of questions — I hope you can keep up.",
+          img: "https://i.pravatar.cc/600?img=29",
+          interests: ["Writing", "Current Events", "Wine", "Travel"],
+          looking: "Someone with depth", relationship: "Long-term", work: "Journalist", industry: "Media",
+          education: "Master's", languages: "English, Zulu", religion: "Spiritual",
+          height: "5'8\" (172cm)", children: "None", hometown: "Durban, SA",
+          bodyType: "Slim", smoking: "Never", drinking: "Socially", pets: "Cat lover",
+          zodiac: "Gemini", income: "Upper-middle", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Wine bar and a debate", personality: "Curious, articulate, warm",
+          loveLanguage: "Words of affirmation", weekend: "Reading, brunch, travel",
+          music: "Jazz, Indie, Amapiano", food: "South African, Thai, Japanese" },
+
+        { name: "Chiamaka", age: 43, location: "Port Harcourt, Nigeria",
+          bio: "Doctor. Busy but ready to make time for the right person. I'm calm, kind, and loyal.",
+          img: "https://i.pravatar.cc/600?img=30",
+          interests: ["Reading", "Classical Music", "Travel", "Church"],
+          looking: "A real partner", relationship: "Marriage", work: "Doctor", industry: "Healthcare",
+          education: "Medical Degree", languages: "English, Igbo", religion: "Christian",
+          height: "5'6\" (168cm)", children: "1 child", hometown: "Owerri, Nigeria",
+          bodyType: "Average", smoking: "Never", drinking: "Never", pets: "No pets",
+          zodiac: "Virgo", income: "Upper", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Quiet dinner and good wine", personality: "Calm, kind, devoted",
+          loveLanguage: "Quality time", weekend: "Family, reading, church",
+          music: "Classical, Gospel", food: "Nigerian, Mediterranean" },
+
+        { name: "Fiona", age: 26, location: "Nairobi, Kenya",
+          bio: "Model and part-time student. I love art, fashion, and men who are sure of themselves.",
+          img: "https://i.pravatar.cc/600?img=32",
+          interests: ["Fashion", "Art", "Travel", "Photography"],
+          looking: "A confident man", relationship: "Long-term", work: "Model / Student", industry: "Fashion",
+          education: "In Progress", languages: "English, Swahili", religion: "Christian",
+          height: "5'9\" (175cm)", children: "None", hometown: "Mombasa, Kenya",
+          bodyType: "Slim", smoking: "Never", drinking: "Socially", pets: "Cat lover",
+          zodiac: "Leo", income: "Middle", hasCar: "No", relocate: "Yes",
+          firstDate: "Art gallery and cocktails", personality: "Confident, artistic, bold",
+          loveLanguage: "Gifts", weekend: "Shoots, brunch, art shows",
+          music: "Afrobeats, House", food: "Japanese, Italian, Kenyan" },
+
+        { name: "Brenda", age: 31, location: "Mombasa, Kenya",
+          bio: "Hotel manager. I smile for a living and mean it. Looking for a serious man with a good heart.",
+          img: "https://i.pravatar.cc/600?img=33",
+          interests: ["Hospitality", "Beach", "Cooking", "Travel"],
+          looking: "A good-hearted man", relationship: "Marriage", work: "Hotel Manager", industry: "Hospitality",
+          education: "Bachelor's", languages: "English, Swahili", religion: "Christian",
+          height: "5'6\" (168cm)", children: "None", hometown: "Malindi, Kenya",
+          bodyType: "Curvy", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Cancer", income: "Middle", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Beach walk and seafood", personality: "Warm, cheerful, devoted",
+          loveLanguage: "Quality time", weekend: "Beach, cooking, family",
+          music: "Afro-pop, R&B", food: "Swahili, Italian, Seafood" },
+
+        { name: "Cynthia", age: 28, location: "Kampala, Uganda",
+          bio: "Radio presenter. I talk for a living but listen even better. Looking for something real and calm.",
+          img: "https://i.pravatar.cc/600?img=34",
+          interests: ["Music", "Podcasts", "Reading", "Coffee"],
+          looking: "Something calm and real", relationship: "Long-term", work: "Radio Presenter", industry: "Media",
+          education: "Bachelor's", languages: "English, Luganda", religion: "Christian",
+          height: "5'5\" (165cm)", children: "None", hometown: "Jinja, Uganda",
+          bodyType: "Slim", smoking: "Never", drinking: "Socially", pets: "Cat lover",
+          zodiac: "Libra", income: "Middle", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Coffee and a walk", personality: "Talkative, warm, thoughtful",
+          loveLanguage: "Words of affirmation", weekend: "Coffee, podcasts, reading",
+          music: "Soul, Afro-soul, R&B", food: "Ugandan, Continental" },
+
+        { name: "Yasmin", age: 35, location: "Cairo, Egypt",
+          bio: "Architect. Elegant, cultured, warm. I love travelling, art, and honest men who know how to treat a woman.",
+          img: "https://i.pravatar.cc/600?img=35",
+          interests: ["Architecture", "Art", "Travel", "History"],
+          looking: "A gentleman", relationship: "Marriage", work: "Architect", industry: "Design",
+          education: "Master's", languages: "Arabic, English, French", religion: "Muslim",
+          height: "5'7\" (170cm)", children: "None", hometown: "Alexandria, Egypt",
+          bodyType: "Slim", smoking: "Never", drinking: "Never", pets: "No pets",
+          zodiac: "Capricorn", income: "Upper-middle", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Dinner at a nice restaurant", personality: "Elegant, cultured, warm",
+          loveLanguage: "Quality time", weekend: "Art galleries, travel, family",
+          music: "Arabic classical, Jazz", food: "Egyptian, French, Lebanese" },
+
+        { name: "Priscilla", age: 25, location: "Lagos, Nigeria",
+          bio: "Fashion designer. Bold, creative, honest. If you're looking for a simple, beautiful love — say hi.",
+          img: "https://i.pravatar.cc/600?img=37",
+          interests: ["Fashion", "Art", "Music", "Travel"],
+          looking: "Something beautiful", relationship: "Long-term", work: "Fashion Designer", industry: "Fashion",
+          education: "Bachelor's", languages: "English", religion: "Christian",
+          height: "5'7\" (170cm)", children: "None", hometown: "Lagos, Nigeria",
+          bodyType: "Slim", smoking: "Never", drinking: "Socially", pets: "Cat lover",
+          zodiac: "Sagittarius", income: "Middle", hasCar: "No", relocate: "Yes",
+          firstDate: "Rooftop cocktails and city views", personality: "Bold, creative, honest",
+          loveLanguage: "Gifts", weekend: "Designing, brunch, art shows",
+          music: "Alté, Afrobeats, R&B", food: "Nigerian, Italian, Japanese" },
+
+        { name: "Sophie", age: 33, location: "Paris, France",
+          bio: "Graphic designer. Curious, warm, open to something serious. I believe in slow love and good wine.",
+          img: "https://i.pravatar.cc/600?img=43",
+          interests: ["Design", "Art", "Wine", "Cinema"],
+          looking: "Slow love", relationship: "Long-term", work: "Graphic Designer", industry: "Creative",
+          education: "Bachelor's", languages: "French, English", religion: "Catholic",
+          height: "5'6\" (168cm)", children: "None", hometown: "Lyon, France",
+          bodyType: "Slim", smoking: "Never", drinking: "Socially", pets: "Cat lover",
+          zodiac: "Libra", income: "Middle", hasCar: "No", relocate: "Maybe",
+          firstDate: "Wine bar and a long conversation", personality: "Elegant, curious, warm",
+          loveLanguage: "Quality time", weekend: "Art, cinema, cooking",
+          music: "French pop, Jazz", food: "French, Italian, Japanese" },
+
+        { name: "Hannah", age: 40, location: "Sydney, Australia",
+          bio: "Nurse. Divorced. Mother of one. Looking for companionship that feels like home, not fireworks.",
+          img: "https://i.pravatar.cc/600?img=44",
+          interests: ["Beach", "Yoga", "Cooking", "Family"],
+          looking: "Companionship", relationship: "Long-term", work: "Nurse", industry: "Healthcare",
+          education: "Bachelor's", languages: "English", religion: "Christian",
+          height: "5'6\" (168cm)", children: "1 child", hometown: "Brisbane, Australia",
+          bodyType: "Athletic", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Cancer", income: "Middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Beach walk and coffee", personality: "Warm, grounded, calm",
+          loveLanguage: "Quality time", weekend: "Beach, yoga, family",
+          music: "Indie, Pop, Acoustic", food: "Australian, Thai, Japanese" },
+
+        { name: "Laura", age: 35, location: "Amsterdam, Netherlands",
+          bio: "Marketing consultant. Loves cycling, art, and honest people. I'm direct — I hope you are too.",
+          img: "https://i.pravatar.cc/600?img=46",
+          interests: ["Cycling", "Art", "Travel", "Coffee"],
+          looking: "An honest man", relationship: "Long-term", work: "Marketing Consultant", industry: "Marketing",
+          education: "Master's", languages: "Dutch, English, German", religion: "Agnostic",
+          height: "5'8\" (172cm)", children: "None", hometown: "Utrecht, Netherlands",
+          bodyType: "Athletic", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Sagittarius", income: "Upper-middle", hasCar: "No", relocate: "Maybe",
+          firstDate: "Cycling then coffee", personality: "Direct, warm, curious",
+          loveLanguage: "Quality time", weekend: "Cycling, art, coffee",
+          music: "Indie, Electronic", food: "Dutch, Indonesian, Italian" },
+
+        { name: "Rachel", age: 44, location: "Chicago, USA",
+          bio: "Lawyer. Divorced. Ready for something real and lasting. I'm not here to play — I'm here to build.",
+          img: "https://i.pravatar.cc/600?img=47",
+          interests: ["Law", "Fitness", "Travel", "Wine"],
+          looking: "Something lasting", relationship: "Marriage", work: "Lawyer", industry: "Legal",
+          education: "Law Degree", languages: "English", religion: "Jewish",
+          height: "5'7\" (170cm)", children: "2 children", hometown: "Boston, USA",
+          bodyType: "Athletic", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Aries", income: "Upper", hasCar: "Yes", relocate: "No",
+          firstDate: "Dinner at a nice restaurant", personality: "Driven, warm, honest",
+          loveLanguage: "Acts of service", weekend: "Fitness, wine, family",
+          music: "Pop, Jazz, Soul", food: "American, Italian, Japanese" },
+
+        { name: "Diana", age: 57, location: "Cape Town, SA",
+          bio: "Retired flight attendant. Well-travelled, warm, sociable. Let's see where this goes.",
+          img: "https://i.pravatar.cc/600?img=48",
+          interests: ["Travel", "Wine", "Beach", "Dancing"],
+          looking: "A sociable man", relationship: "Companionship", work: "Retired Flight Attendant", industry: "Aviation",
+          education: "Diploma", languages: "English, Afrikaans", religion: "Christian",
+          height: "5'6\" (168cm)", children: "1 child", hometown: "Durban, SA",
+          bodyType: "Average", smoking: "Never", drinking: "Socially", pets: "Cat lover",
+          zodiac: "Leo", income: "Middle", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Wine and good food", personality: "Warm, sociable, adventurous",
+          loveLanguage: "Quality time", weekend: "Travel, wine, dancing",
+          music: "Oldies, Jazz, Pop", food: "South African, Italian, Asian" },
+
+        { name: "Emily", age: 30, location: "Toronto, Canada",
+          bio: "Veterinarian. Loves animals, hiking, genuine conversation. I'm the kind of woman who remembers small things.",
+          img: "https://i.pravatar.cc/600?img=50",
+          interests: ["Animals", "Hiking", "Reading", "Coffee"],
+          looking: "A genuine man", relationship: "Long-term", work: "Veterinarian", industry: "Healthcare",
+          education: "Doctorate", languages: "English, French", religion: "Christian",
+          height: "5'6\" (168cm)", children: "None", hometown: "Ottawa, Canada",
+          bodyType: "Athletic", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Virgo", income: "Upper-middle", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Coffee and a walk with my dog", personality: "Warm, thoughtful, genuine",
+          loveLanguage: "Quality time", weekend: "Hiking, coffee, reading",
+          music: "Indie, Folk, Pop", food: "Canadian, Thai, Italian" },
+
+        { name: "Bianca", age: 27, location: "Cape Town, SA",
+          bio: "Wine estate manager. Elegant, outdoorsy, warm. Looking for a man with ambition and a sense of humour.",
+          img: "https://i.pravatar.cc/600?img=51",
+          interests: ["Wine", "Hiking", "Cooking", "Travel"],
+          looking: "An ambitious man", relationship: "Long-term", work: "Wine Estate Manager", industry: "Wine",
+          education: "Bachelor's", languages: "English, Afrikaans", religion: "Christian",
+          height: "5'7\" (170cm)", children: "None", hometown: "Stellenbosch, SA",
+          bodyType: "Slim", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Aries", income: "Middle", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Wine tasting at the estate", personality: "Elegant, outdoorsy, warm",
+          loveLanguage: "Quality time", weekend: "Wine, hiking, friends",
+          music: "Indie, Jazz, House", food: "South African, Italian, Seafood" },
+
+        { name: "Isabella", age: 39, location: "Milan, Italy",
+          bio: "Fashion buyer. Passionate about beauty, in people and in life. Tell me what makes you come alive.",
+          img: "https://i.pravatar.cc/600?img=52",
+          interests: ["Fashion", "Art", "Travel", "Wine"],
+          looking: "Someone passionate", relationship: "Long-term", work: "Fashion Buyer", industry: "Fashion",
+          education: "Bachelor's", languages: "Italian, English, French", religion: "Catholic",
+          height: "5'8\" (172cm)", children: "None", hometown: "Florence, Italy",
+          bodyType: "Slim", smoking: "Never", drinking: "Socially", pets: "Cat lover",
+          zodiac: "Scorpio", income: "Upper-middle", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Dinner at a trattoria", personality: "Passionate, elegant, warm",
+          loveLanguage: "Quality time", weekend: "Art, wine, travel",
+          music: "Italian pop, Jazz", food: "Italian, French, Japanese" },
+
+        { name: "James", age: 31, location: "London, UK",
+          bio: "Architect. Big on travel and family. I'm calm, loyal, and looking for a partner to build a life with.",
+          img: "https://i.pravatar.cc/600?img=62",
+          interests: ["Architecture", "Travel", "Fitness", "Family"],
+          looking: "A life partner", relationship: "Marriage", work: "Architect", industry: "Design",
+          education: "Master's", languages: "English", religion: "Christian",
+          height: "6'0\" (183cm)", children: "None", hometown: "Birmingham, UK",
+          bodyType: "Athletic", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Aries", income: "Upper-middle", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Dinner and a walk", personality: "Calm, loyal, thoughtful",
+          loveLanguage: "Quality time", weekend: "Fitness, family, travel",
+          music: "Indie, Jazz", food: "British, Italian, Japanese" },
+
+        { name: "Daniel", age: 29, location: "Cape Town, SA",
+          bio: "Fitness coach. Faith, discipline, forward thinking. I want a woman I can grow with.",
+          img: "https://i.pravatar.cc/600?img=63",
+          interests: ["Fitness", "Faith", "Sports", "Outdoors"],
+          looking: "A woman to grow with", relationship: "Marriage", work: "Fitness Coach", industry: "Fitness",
+          education: "Diploma", languages: "English, Afrikaans", religion: "Christian",
+          height: "5'11\" (180cm)", children: "None", hometown: "Pretoria, SA",
+          bodyType: "Athletic", smoking: "Never", drinking: "Never", pets: "Dog lover",
+          zodiac: "Taurus", income: "Middle", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Coffee and a hike", personality: "Disciplined, warm, faithful",
+          loveLanguage: "Acts of service", weekend: "Gym, church, outdoors",
+          music: "Gospel, Hip-hop", food: "South African, Healthy" },
+
+        { name: "Michael", age: 38, location: "Berlin, Germany",
+          bio: "Software engineer. Calm, grounded, ready to settle down. I cook, I listen, I mean what I say.",
+          img: "https://i.pravatar.cc/600?img=64",
+          interests: ["Technology", "Cooking", "Cycling", "Travel"],
+          looking: "To settle down", relationship: "Marriage", work: "Software Engineer", industry: "Technology",
+          education: "Master's", languages: "German, English", religion: "Agnostic",
+          height: "6'1\" (185cm)", children: "None", hometown: "Hamburg, Germany",
+          bodyType: "Average", smoking: "Never", drinking: "Socially", pets: "Cat lover",
+          zodiac: "Virgo", income: "Upper-middle", hasCar: "No", relocate: "Maybe",
+          firstDate: "I cook for you at my place", personality: "Calm, grounded, thoughtful",
+          loveLanguage: "Acts of service", weekend: "Cycling, cooking, reading",
+          music: "Electronic, Jazz", food: "German, Italian, Asian" },
+
+        { name: "David", age: 52, location: "Toronto, Canada",
+          bio: "Doctor. Divorced, two grown kids. Looking for companionship and genuine love in the second half.",
+          img: "https://i.pravatar.cc/600?img=65",
+          interests: ["Medicine", "Golf", "Travel", "Wine"],
+          looking: "Genuine love", relationship: "Companionship", work: "Doctor", industry: "Healthcare",
+          education: "Medical Degree", languages: "English", religion: "Christian",
+          height: "5'11\" (180cm)", children: "2 children", hometown: "Vancouver, Canada",
+          bodyType: "Average", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Capricorn", income: "Upper", hasCar: "Yes", relocate: "No",
+          firstDate: "Dinner and good wine", personality: "Calm, kind, thoughtful",
+          loveLanguage: "Quality time", weekend: "Golf, travel, family",
+          music: "Jazz, Classical", food: "Continental, Italian" },
+
+        { name: "Samuel", age: 67, location: "Lusaka, Zambia",
+          bio: "Farmer and grandfather. Honest, hardworking, looking for someone to share life's sunset with.",
+          img: "https://i.pravatar.cc/600?img=66",
+          interests: ["Farming", "Family", "Church", "Outdoors"],
+          looking: "A sunset companion", relationship: "Companionship", work: "Farmer", industry: "Agriculture",
+          education: "Diploma", languages: "English, Bemba", religion: "Christian",
+          height: "5'9\" (175cm)", children: "4 children", hometown: "Lusaka, Zambia",
+          bodyType: "Average", smoking: "Never", drinking: "Never", pets: "Dog lover",
+          zodiac: "Leo", income: "Middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Farm visit and lunch", personality: "Honest, hardworking, kind",
+          loveLanguage: "Acts of service", weekend: "Farm, family, church",
+          music: "Gospel, Oldies", food: "Zambian, Continental" },
+
+        { name: "Joseph", age: 63, location: "Houston, USA",
+          bio: "Retired military. Family man. Looking for a genuine woman who knows the value of loyalty.",
+          img: "https://i.pravatar.cc/600?img=67",
+          interests: ["Fitness", "Fishing", "Family", "Travel"],
+          looking: "A loyal woman", relationship: "Companionship", work: "Retired Military", industry: "Military",
+          education: "Bachelor's", languages: "English", religion: "Christian",
+          height: "6'0\" (183cm)", children: "3 children", hometown: "Atlanta, USA",
+          bodyType: "Athletic", smoking: "Never", drinking: "Occasionally", pets: "Dog lover",
+          zodiac: "Scorpio", income: "Middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Dinner and a walk", personality: "Disciplined, warm, loyal",
+          loveLanguage: "Acts of service", weekend: "Fishing, family, fitness",
+          music: "Country, Soul", food: "American, Southern" },
+
+        { name: "William", age: 42, location: "Cape Town, SA",
+          bio: "Entrepreneur. Well-travelled. Values honesty and ambition. Let's see if we fit.",
+          img: "https://i.pravatar.cc/600?img=68",
+          interests: ["Business", "Travel", "Wine", "Sailing"],
+          looking: "An honest woman", relationship: "Long-term", work: "Entrepreneur", industry: "Business",
+          education: "MBA", languages: "English, Afrikaans", religion: "Christian",
+          height: "6'0\" (183cm)", children: "None", hometown: "Cape Town, SA",
+          bodyType: "Athletic", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Gemini", income: "Upper", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Wine tasting and dinner", personality: "Confident, warm, direct",
+          loveLanguage: "Quality time", weekend: "Sailing, wine, business",
+          music: "Jazz, House", food: "South African, Italian, Asian" },
+
+        { name: "Charles", age: 49, location: "Manchester, UK",
+          bio: "Civil servant. Divorced. Father of two. Looking for a genuine connection, not a fling.",
+          img: "https://i.pravatar.cc/600?img=69",
+          interests: ["Reading", "Football", "Travel", "Music"],
+          looking: "A genuine connection", relationship: "Long-term", work: "Civil Servant", industry: "Government",
+          education: "Bachelor's", languages: "English", religion: "Christian",
+          height: "5'11\" (180cm)", children: "2 children", hometown: "Leeds, UK",
+          bodyType: "Average", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Pisces", income: "Middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Coffee and a long walk", personality: "Quiet, warm, honest",
+          loveLanguage: "Quality time", weekend: "Football, reading, family",
+          music: "Rock, Indie", food: "British, Italian, Indian" },
+
+        { name: "Kwame", age: 33, location: "Accra, Ghana",
+          bio: "Engineer. Loves football, family, and meaningful conversation. I'm ready for something real.",
+          img: "https://i.pravatar.cc/600?img=70",
+          interests: ["Football", "Family", "Music", "Travel"],
+          looking: "Something real", relationship: "Marriage", work: "Engineer", industry: "Engineering",
+          education: "Bachelor's", languages: "English, Twi", religion: "Christian",
+          height: "5'10\" (178cm)", children: "None", hometown: "Accra, Ghana",
+          bodyType: "Athletic", smoking: "Never", drinking: "Socially", pets: "No pets",
+          zodiac: "Leo", income: "Middle", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Dinner and a football match", personality: "Warm, ambitious, loyal",
+          loveLanguage: "Acts of service", weekend: "Football, family, friends",
+          music: "Afrobeats, Hip-hop", food: "Ghanaian, Continental" },
+
+        { name: "Tunde", age: 45, location: "Lagos, Nigeria",
+          bio: "Banker. Divorced. Ready for a fresh, honest start. No drama, just depth.",
+          img: "https://i.pravatar.cc/600?img=11",
+          interests: ["Finance", "Reading", "Travel", "Wine"],
+          looking: "A fresh start", relationship: "Long-term", work: "Banker", industry: "Finance",
+          education: "MBA", languages: "English, Yoruba", religion: "Christian",
+          height: "5'11\" (180cm)", children: "2 children", hometown: "Lagos, Nigeria",
+          bodyType: "Average", smoking: "Never", drinking: "Socially", pets: "No pets",
+          zodiac: "Libra", income: "Upper", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Dinner and good conversation", personality: "Warm, ambitious, honest",
+          loveLanguage: "Words of affirmation", weekend: "Reading, wine, family",
+          music: "Jazz, Afro-soul", food: "Nigerian, Continental" },
+
+        { name: "Thomas", age: 45, location: "Paris, France",
+          bio: "Chef and restaurant owner. Passionate about food, wine, and connection. I'll cook for you.",
+          img: "https://i.pravatar.cc/600?img=12",
+          interests: ["Cooking", "Wine", "Travel", "Music"],
+          looking: "A life partner", relationship: "Long-term", work: "Chef / Owner", industry: "Hospitality",
+          education: "Culinary School", languages: "French, English", religion: "Catholic",
+          height: "5'10\" (178cm)", children: "1 child", hometown: "Lyon, France",
+          bodyType: "Average", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Taurus", income: "Upper-middle", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "I cook for you at my restaurant", personality: "Passionate, warm, generous",
+          loveLanguage: "Acts of service", weekend: "Cooking, wine, friends",
+          music: "Jazz, French chanson", food: "French, Italian" },
+
+        { name: "Peter", age: 60, location: "Sydney, Australia",
+          bio: "Retired engineer. Widower. Love travel, books, and quiet evenings. Looking for a warm companion.",
+          img: "https://i.pravatar.cc/600?img=13",
+          interests: ["Books", "Travel", "Sailing", "Wine"],
+          looking: "A warm companion", relationship: "Companionship", work: "Retired Engineer", industry: "Engineering",
+          education: "Bachelor's", languages: "English", religion: "Christian",
+          height: "5'11\" (180cm)", children: "2 children", hometown: "Melbourne, Australia",
+          bodyType: "Average", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Aquarius", income: "Upper-middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Coffee and a walk by the harbour", personality: "Warm, thoughtful, kind",
+          loveLanguage: "Quality time", weekend: "Sailing, reading, travel",
+          music: "Classical, Jazz", food: "Australian, Italian, Asian" },
+
+        { name: "Mark", age: 36, location: "Berlin, Germany",
+          bio: "Architect. Divorced. Looking for a serious relationship. I'm honest, calm, and a good listener.",
+          img: "https://i.pravatar.cc/600?img=14",
+          interests: ["Architecture", "Art", "Cycling", "Travel"],
+          looking: "A serious relationship", relationship: "Long-term", work: "Architect", industry: "Design",
+          education: "Master's", languages: "German, English", religion: "Agnostic",
+          height: "6'0\" (183cm)", children: "None", hometown: "Munich, Germany",
+          bodyType: "Athletic", smoking: "Never", drinking: "Socially", pets: "Cat lover",
+          zodiac: "Libra", income: "Upper-middle", hasCar: "No", relocate: "Maybe",
+          firstDate: "Art gallery then coffee", personality: "Calm, honest, thoughtful",
+          loveLanguage: "Quality time", weekend: "Cycling, art, travel",
+          music: "Electronic, Indie", food: "German, Italian, Asian" },
+
+        { name: "Andrew", age: 48, location: "London, UK",
+          bio: "Financial analyst. Quiet, loyal, ready to settle down. I value small things done well.",
+          img: "https://i.pravatar.cc/600?img=15",
+          interests: ["Finance", "Reading", "Golf", "Travel"],
+          looking: "To settle down", relationship: "Marriage", work: "Financial Analyst", industry: "Finance",
+          education: "Master's", languages: "English", religion: "Christian",
+          height: "5'10\" (178cm)", children: "None", hometown: "Bristol, UK",
+          bodyType: "Average", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Virgo", income: "Upper-middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Dinner at a quiet restaurant", personality: "Quiet, loyal, thoughtful",
+          loveLanguage: "Acts of service", weekend: "Golf, reading, travel",
+          music: "Jazz, Classical", food: "British, Italian" },
+
+        { name: "Robert", age: 65, location: "Florida, USA",
+          bio: "Retired teacher. Widower. Two grown children. Looking for companionship and good conversation.",
+          img: "https://i.pravatar.cc/600?img=17",
+          interests: ["Reading", "Golf", "Travel", "Family"],
+          looking: "Companionship", relationship: "Companionship", work: "Retired Teacher", industry: "Education",
+          education: "Master's", languages: "English", religion: "Christian",
+          height: "5'10\" (178cm)", children: "2 children", hometown: "Chicago, USA",
+          bodyType: "Average", smoking: "Never", drinking: "Occasionally", pets: "Dog lover",
+          zodiac: "Pisces", income: "Middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Dinner and a good conversation", personality: "Warm, thoughtful, kind",
+          loveLanguage: "Quality time", weekend: "Golf, reading, family",
+          music: "Classical, Oldies", food: "American, Continental" },
+
+        { name: "Stephen", age: 54, location: "Dublin, Ireland",
+          bio: "Business owner. Divorced. Loves golf, travel, and good company. Looking for something genuine.",
+          img: "https://i.pravatar.cc/600?img=18",
+          interests: ["Golf", "Travel", "Wine", "Music"],
+          looking: "Something genuine", relationship: "Long-term", work: "Business Owner", industry: "Business",
+          education: "Bachelor's", languages: "English", religion: "Catholic",
+          height: "5'11\" (180cm)", children: "2 children", hometown: "Cork, Ireland",
+          bodyType: "Average", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Aries", income: "Upper-middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Dinner and a pint", personality: "Warm, sociable, honest",
+          loveLanguage: "Quality time", weekend: "Golf, travel, family",
+          music: "Traditional, Rock", food: "Irish, Italian" },
+
+        { name: "Chris", age: 39, location: "Nairobi, Kenya",
+          bio: "Expat project manager. Loves Africa and wants to build a life here. Warm, curious, honest.",
+          img: "https://i.pravatar.cc/600?img=19",
+          interests: ["Travel", "Photography", "Hiking", "Africa"],
+          looking: "To build a life", relationship: "Marriage", work: "Project Manager", industry: "Development",
+          education: "Master's", languages: "English", religion: "Christian",
+          height: "6'0\" (183cm)", children: "None", hometown: "Amsterdam, Netherlands",
+          bodyType: "Athletic", smoking: "Never", drinking: "Socially", pets: "Dog lover",
+          zodiac: "Sagittarius", income: "Upper-middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Safari walk and lunch", personality: "Warm, curious, honest",
+          loveLanguage: "Quality time", weekend: "Hiking, photography, travel",
+          music: "Indie, Afro-fusion", food: "Kenyan, Continental" },
+
+        { name: "Paul", age: 70, location: "Vancouver, Canada",
+          bio: "Retired businessman. Widower. Still hopeful, still active. I'd love someone to travel with.",
+          img: "https://i.pravatar.cc/600?img=21",
+          interests: ["Travel", "Fishing", "Reading", "Family"],
+          looking: "A travel companion", relationship: "Companionship", work: "Retired Businessman", industry: "Business",
+          education: "Bachelor's", languages: "English", religion: "Christian",
+          height: "5'9\" (175cm)", children: "3 children", hometown: "Calgary, Canada",
+          bodyType: "Average", smoking: "Never", drinking: "Occasionally", pets: "Dog lover",
+          zodiac: "Taurus", income: "Upper", hasCar: "Yes", relocate: "No",
+          firstDate: "Coffee and a walk", personality: "Warm, active, kind",
+          loveLanguage: "Quality time", weekend: "Fishing, travel, family",
+          music: "Classical, Country", food: "Canadian, Continental" },
+
+        { name: "Edward", age: 42, location: "Amsterdam, Netherlands",
+          bio: "Photographer. Divorced. Looking for honesty and warmth. I see beauty everywhere — I'd like to see it in you.",
+          img: "https://i.pravatar.cc/600?img=22",
+          interests: ["Photography", "Art", "Travel", "Cycling"],
+          looking: "Honesty and warmth", relationship: "Long-term", work: "Photographer", industry: "Creative",
+          education: "Bachelor's", languages: "Dutch, English", religion: "Agnostic",
+          height: "5'11\" (180cm)", children: "1 child", hometown: "Rotterdam, Netherlands",
+          bodyType: "Athletic", smoking: "Never", drinking: "Socially", pets: "Cat lover",
+          zodiac: "Cancer", income: "Middle", hasCar: "No", relocate: "Maybe",
+          firstDate: "A walk and coffee", personality: "Creative, warm, thoughtful",
+          loveLanguage: "Quality time", weekend: "Photography, cycling, art",
+          music: "Indie, Electronic", food: "Dutch, Indonesian, Italian" },
+
+        { name: "Beatrice", age: 68, location: "Nairobi, Kenya",
+          bio: "Retired headteacher. Widow, mother of three, grandmother of six. I still love to laugh and dance. Looking for a kind, honest companion to share the rest of life with.",
+          img: "https://i.pravatar.cc/600?img=71",
+          interests: ["Gardening", "Church", "Cooking", "Grandchildren"],
+          looking: "A kind companion", relationship: "Companionship", work: "Retired Headteacher", industry: "Education",
+          education: "Bachelor's", languages: "English, Swahili", religion: "Christian",
+          height: "5'4\" (163cm)", children: "3 children", hometown: "Nyeri, Kenya",
+          bodyType: "Average", smoking: "Never", drinking: "Never", pets: "Cat lover",
+          zodiac: "Taurus", income: "Middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Tea and a walk in the garden", personality: "Warm, wise, joyful",
+          loveLanguage: "Quality time", weekend: "Church, grandchildren, gardening",
+          music: "Gospel, Oldies", food: "Kenyan, Continental" },
+
+        { name: "Solomon", age: 72, location: "Kisumu, Kenya",
+          bio: "Retired civil servant. Widower, father of four. Healthy, active, and still hopeful. I want someone to travel and grow old with.",
+          img: "https://i.pravatar.cc/600?img=72",
+          interests: ["Travel", "Fishing", "Church", "Reading"],
+          looking: "A travel companion", relationship: "Companionship", work: "Retired Civil Servant", industry: "Government",
+          education: "Diploma", languages: "English, Swahili, Luo", religion: "Christian",
+          height: "5'10\" (178cm)", children: "4 children", hometown: "Kisumu, Kenya",
+          bodyType: "Average", smoking: "Never", drinking: "Never", pets: "Dog lover",
+          zodiac: "Libra", income: "Middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Lunch by the lake", personality: "Calm, honest, kind",
+          loveLanguage: "Quality time", weekend: "Fishing, church, family",
+          music: "Gospel, Oldies", food: "Kenyan, Fish" },
+
+        { name: "Josephine", age: 65, location: "Accra, Ghana",
+          bio: "Retired nurse. Widow. Still full of energy and laughter. I love cooking, singing, and good conversation. Seeking a gentleman.",
+          img: "https://i.pravatar.cc/600?img=73",
+          interests: ["Cooking", "Singing", "Church", "Family"],
+          looking: "A gentleman", relationship: "Companionship", work: "Retired Nurse", industry: "Healthcare",
+          education: "Diploma", languages: "English, Twi", religion: "Christian",
+          height: "5'3\" (160cm)", children: "3 children", hometown: "Accra, Ghana",
+          bodyType: "Average", smoking: "Never", drinking: "Never", pets: "No pets",
+          zodiac: "Pisces", income: "Middle", hasCar: "No", relocate: "No",
+          firstDate: "Lunch and a long chat", personality: "Warm, funny, faithful",
+          loveLanguage: "Acts of service", weekend: "Church, cooking, family",
+          music: "Gospel, Highlife", food: "Ghanaian, Continental" },
+
+        { name: "Emmanuel", age: 70, location: "Lagos, Nigeria",
+          bio: "Retired banker. Widower. Father of three, grandfather of five. I still wear a suit, still open doors, still believe in love.",
+          img: "https://i.pravatar.cc/600?img=74",
+          interests: ["Reading", "Golf", "Travel", "Church"],
+          looking: "A gentlewoman", relationship: "Companionship", work: "Retired Banker", industry: "Finance",
+          education: "MBA", languages: "English, Yoruba", religion: "Christian",
+          height: "5'9\" (175cm)", children: "3 children", hometown: "Lagos, Nigeria",
+          bodyType: "Average", smoking: "Never", drinking: "Occasionally", pets: "No pets",
+          zodiac: "Capricorn", income: "Upper-middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Dinner at a fine restaurant", personality: "Dignified, warm, kind",
+          loveLanguage: "Quality time", weekend: "Church, golf, family",
+          music: "Jazz, Highlife", food: "Nigerian, Continental" },
+
+        { name: "Miriam", age: 74, location: "Cape Town, SA",
+          bio: "Retired librarian. Widow. Book lover, gardener, and grandmother. Quiet and kind, but I still love a good laugh.",
+          img: "https://i.pravatar.cc/600?img=75",
+          interests: ["Books", "Gardening", "Classical Music", "Grandchildren"],
+          looking: "A gentle companion", relationship: "Companionship", work: "Retired Librarian", industry: "Education",
+          education: "Bachelor's", languages: "English, Afrikaans", religion: "Christian",
+          height: "5'3\" (160cm)", children: "2 children", hometown: "Cape Town, SA",
+          bodyType: "Petite", smoking: "Never", drinking: "Never", pets: "Cat lover",
+          zodiac: "Virgo", income: "Middle", hasCar: "No", relocate: "No",
+          firstDate: "Coffee and a museum visit", personality: "Quiet, kind, thoughtful",
+          loveLanguage: "Quality time", weekend: "Reading, garden, family",
+          music: "Classical, Opera", food: "South African, Continental" },
+
+        { name: "Albert", age: 76, location: "London, UK",
+          bio: "Retired doctor. Widower. Two grown children. I've had a full life but it feels empty without someone to share it with.",
+          img: "https://i.pravatar.cc/600?img=76",
+          interests: ["Reading", "Theatre", "Travel", "Wine"],
+          looking: "A late-life partner", relationship: "Companionship", work: "Retired Doctor", industry: "Healthcare",
+          education: "Medical Degree", languages: "English", religion: "Christian",
+          height: "5'10\" (178cm)", children: "2 children", hometown: "Edinburgh, UK",
+          bodyType: "Average", smoking: "Never", drinking: "Occasionally", pets: "Dog lover",
+          zodiac: "Aquarius", income: "Upper", hasCar: "Yes", relocate: "No",
+          firstDate: "Afternoon tea and a walk", personality: "Thoughtful, warm, cultured",
+          loveLanguage: "Quality time", weekend: "Theatre, reading, walks",
+          music: "Classical, Jazz", food: "British, French" },
+
+        { name: "Florence", age: 63, location: "Kampala, Uganda",
+          bio: "Retired businesswoman. Widow. I raised five children and built my own shop. Now it's my turn to be loved.",
+          img: "https://i.pravatar.cc/600?img=77",
+          interests: ["Business", "Church", "Cooking", "Family"],
+          looking: "A good man", relationship: "Companionship", work: "Retired Businesswoman", industry: "Trade",
+          education: "Diploma", languages: "English, Luganda", religion: "Christian",
+          height: "5'4\" (163cm)", children: "5 children", hometown: "Kampala, Uganda",
+          bodyType: "Average", smoking: "Never", drinking: "Never", pets: "No pets",
+          zodiac: "Leo", income: "Middle", hasCar: "No", relocate: "No",
+          firstDate: "Lunch and a long conversation", personality: "Strong, warm, faithful",
+          loveLanguage: "Acts of service", weekend: "Church, family, cooking",
+          music: "Gospel, Oldies", food: "Ugandan, Continental" },
+
+        { name: "George", age: 71, location: "Nairobi, Kenya",
+          bio: "Retired military officer. Widower. Father of two, grandfather of four. I keep fit, keep busy, and keep hoping.",
+          img: "https://i.pravatar.cc/600?img=78",
+          interests: ["Fitness", "Reading", "Fishing", "Church"],
+          looking: "A calm companion", relationship: "Companionship", work: "Retired Military", industry: "Military",
+          education: "Bachelor's", languages: "English, Swahili", religion: "Christian",
+          height: "5'11\" (180cm)", children: "2 children", hometown: "Nairobi, Kenya",
+          bodyType: "Athletic", smoking: "Never", drinking: "Never", pets: "Dog lover",
+          zodiac: "Aries", income: "Middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Morning walk and breakfast", personality: "Disciplined, warm, honest",
+          loveLanguage: "Acts of service", weekend: "Fitness, family, church",
+          music: "Gospel, Country", food: "Kenyan, Continental" },
+
+        { name: "Priscilla", age: 66, location: "Abuja, Nigeria",
+          bio: "Retired teacher. Widow. I still teach Sunday school and I still have a soft spot for a kind, honest man.",
+          img: "https://i.pravatar.cc/600?img=79",
+          interests: ["Teaching", "Church", "Reading", "Grandchildren"],
+          looking: "A kind man", relationship: "Companionship", work: "Retired Teacher", industry: "Education",
+          education: "Bachelor's", languages: "English, Igbo", religion: "Christian",
+          height: "5'5\" (165cm)", children: "4 children", hometown: "Enugu, Nigeria",
+          bodyType: "Average", smoking: "Never", drinking: "Never", pets: "No pets",
+          zodiac: "Pisces", income: "Middle", hasCar: "No", relocate: "No",
+          firstDate: "Church and lunch after", personality: "Warm, faithful, gentle",
+          loveLanguage: "Words of affirmation", weekend: "Church, family, reading",
+          music: "Gospel, Hymns", food: "Nigerian, Continental" },
+
+        { name: "Harold", age: 78, location: "Sydney, Australia",
+          bio: "Retired judge. Widower. Still sharp, still curious, still hoping. I would love someone to share books and quiet evenings with.",
+          img: "https://i.pravatar.cc/600?img=80",
+          interests: ["Books", "Classical Music", "Golf", "Theatre"],
+          looking: "A late-life companion", relationship: "Companionship", work: "Retired Judge", industry: "Legal",
+          education: "Law Degree", languages: "English", religion: "Christian",
+          height: "5'10\" (178cm)", children: "3 children", hometown: "Sydney, Australia",
+          bodyType: "Average", smoking: "Never", drinking: "Occasionally", pets: "Cat lover",
+          zodiac: "Capricorn", income: "Upper", hasCar: "Yes", relocate: "No",
+          firstDate: "Afternoon tea and a walk", personality: "Thoughtful, warm, cultured",
+          loveLanguage: "Quality time", weekend: "Reading, golf, family",
+          music: "Classical, Jazz", food: "Australian, French" },
+
+        { name: "Agnes", age: 69, location: "Durban, SA",
+          bio: "Retired social worker. Widow. I've spent my life caring for others. Now I'd like someone to care for me.",
+          img: "https://i.pravatar.cc/600?img=81",
+          interests: ["Community", "Church", "Cooking", "Family"],
+          looking: "A caring man", relationship: "Companionship", work: "Retired Social Worker", industry: "Social Services",
+          education: "Bachelor's", languages: "English, Zulu", religion: "Christian",
+          height: "5'4\" (163cm)", children: "2 children", hometown: "Durban, SA",
+          bodyType: "Average", smoking: "Never", drinking: "Never", pets: "Dog lover",
+          zodiac: "Cancer", income: "Middle", hasCar: "No", relocate: "No",
+          firstDate: "Tea and a walk on the beach", personality: "Kind, warm, devoted",
+          loveLanguage: "Acts of service", weekend: "Church, family, cooking",
+          music: "Gospel, Oldies", food: "South African, Continental" },
+
+        { name: "Robert", age: 67, location: "Manchester, UK",
+          bio: "Retired engineer. Divorced many years ago. Children grown and gone. Looking for someone to grow old with, honestly and warmly.",
+          img: "https://i.pravatar.cc/600?img=82",
+          interests: ["Chess", "Reading", "Walking", "Travel"],
+          looking: "Someone to grow old with", relationship: "Long-term", work: "Retired Engineer", industry: "Engineering",
+          education: "Bachelor's", languages: "English", religion: "Agnostic",
+          height: "5'11\" (180cm)", children: "2 children", hometown: "Manchester, UK",
+          bodyType: "Average", smoking: "Never", drinking: "Occasionally", pets: "Dog lover",
+          zodiac: "Virgo", income: "Middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Coffee and a walk in the park", personality: "Quiet, loyal, thoughtful",
+          loveLanguage: "Quality time", weekend: "Chess, walks, reading",
+          music: "Classical, Jazz", food: "British, Continental" },
+
+        { name: "Rose", age: 72, location: "Nairobi, Kenya",
+          bio: "Retired farmer. Widow. I raised seven children on a small farm and I am still up before the sun. Seeking a kind companion.",
+          img: "https://i.pravatar.cc/600?img=83",
+          interests: ["Farming", "Church", "Family", "Gardening"],
+          looking: "A kind companion", relationship: "Companionship", work: "Retired Farmer", industry: "Agriculture",
+          education: "Primary", languages: "English, Swahili, Kikuyu", religion: "Christian",
+          height: "5'2\" (157cm)", children: "7 children", hometown: "Murang'a, Kenya",
+          bodyType: "Petite", smoking: "Never", drinking: "Never", pets: "No pets",
+          zodiac: "Taurus", income: "Lower", hasCar: "No", relocate: "No",
+          firstDate: "Tea and a walk on the farm", personality: "Strong, warm, faithful",
+          loveLanguage: "Acts of service", weekend: "Church, farm, family",
+          music: "Gospel, Kikuyu hymns", food: "Kenyan, Traditional" },
+
+        { name: "Charles", age: 73, location: "Toronto, Canada",
+          bio: "Retired teacher. Widower. Father of two, grandfather of four. Still lively, still learning, still looking for love.",
+          img: "https://i.pravatar.cc/600?img=84",
+          interests: ["Books", "History", "Travel", "Grandchildren"],
+          looking: "A thoughtful companion", relationship: "Companionship", work: "Retired Teacher", industry: "Education",
+          education: "Master's", languages: "English, French", religion: "Christian",
+          height: "5'9\" (175cm)", children: "2 children", hometown: "Ottawa, Canada",
+          bodyType: "Average", smoking: "Never", drinking: "Occasionally", pets: "Cat lover",
+          zodiac: "Libra", income: "Middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Coffee and a museum visit", personality: "Warm, thoughtful, cultured",
+          loveLanguage: "Quality time", weekend: "Reading, family, travel",
+          music: "Classical, Jazz", food: "Canadian, Continental" },
+
+        { name: "Janet", age: 64, location: "Lusaka, Zambia",
+          bio: "Retired nurse. Widow. Two grown children. I love to cook, sing in the choir, and meet new people. Looking for a warm companion.",
+          img: "https://i.pravatar.cc/600?img=85",
+          interests: ["Cooking", "Singing", "Church", "Family"],
+          looking: "A warm companion", relationship: "Companionship", work: "Retired Nurse", industry: "Healthcare",
+          education: "Diploma", languages: "English, Bemba", religion: "Christian",
+          height: "5'4\" (163cm)", children: "2 children", hometown: "Lusaka, Zambia",
+          bodyType: "Average", smoking: "Never", drinking: "Never", pets: "No pets",
+          zodiac: "Leo", income: "Middle", hasCar: "No", relocate: "No",
+          firstDate: "Lunch and a walk", personality: "Warm, cheerful, faithful",
+          loveLanguage: "Quality time", weekend: "Church, family, cooking",
+          music: "Gospel, Hymns", food: "Zambian, Continental" },
+
+        { name: "Francis", age: 75, location: "Kumasi, Ghana",
+          bio: "Retired headmaster. Widower. Father of five, grandfather of twelve. I still read every day and still hope for love.",
+          img: "https://i.pravatar.cc/600?img=86",
+          interests: ["Reading", "Church", "Family", "Gardening"],
+          looking: "A loving companion", relationship: "Companionship", work: "Retired Headmaster", industry: "Education",
+          education: "Master's", languages: "English, Twi", religion: "Christian",
+          height: "5'9\" (175cm)", children: "5 children", hometown: "Kumasi, Ghana",
+          bodyType: "Average", smoking: "Never", drinking: "Never", pets: "No pets",
+          zodiac: "Sagittarius", income: "Middle", hasCar: "No", relocate: "No",
+          firstDate: "Tea and a long conversation", personality: "Wise, warm, kind",
+          loveLanguage: "Words of affirmation", weekend: "Church, reading, family",
+          music: "Gospel, Highlife", food: "Ghanaian, Continental" },
+
+        { name: "Edith", age: 70, location: "Cape Town, SA",
+          bio: "Retired accountant. Widow. I love painting, the sea, and my grandchildren. Looking for a gentle man with a good sense of humour.",
+          img: "https://i.pravatar.cc/600?img=87",
+          interests: ["Painting", "Beach", "Reading", "Grandchildren"],
+          looking: "A gentle man", relationship: "Companionship", work: "Retired Accountant", industry: "Finance",
+          education: "Diploma", languages: "English, Afrikaans", religion: "Christian",
+          height: "5'5\" (165cm)", children: "3 children", hometown: "Cape Town, SA",
+          bodyType: "Average", smoking: "Never", drinking: "Occasionally", pets: "Cat lover",
+          zodiac: "Gemini", income: "Middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Coffee and a gallery visit", personality: "Creative, warm, funny",
+          loveLanguage: "Quality time", weekend: "Painting, beach, family",
+          music: "Classical, Jazz", food: "South African, Continental" },
+
+        { name: "Henry", age: 68, location: "Lagos, Nigeria",
+          bio: "Retired oil executive. Divorced. Children grown. I want to slow down, travel, and share my life with someone real.",
+          img: "https://i.pravatar.cc/600?img=88",
+          interests: ["Travel", "Golf", "Wine", "Reading"],
+          looking: "A real partner", relationship: "Long-term", work: "Retired Oil Executive", industry: "Oil & Gas",
+          education: "MBA", languages: "English, Yoruba", religion: "Christian",
+          height: "5'10\" (178cm)", children: "3 children", hometown: "Lagos, Nigeria",
+          bodyType: "Average", smoking: "Never", drinking: "Socially", pets: "No pets",
+          zodiac: "Aries", income: "Upper", hasCar: "Yes", relocate: "Maybe",
+          firstDate: "Dinner at a fine restaurant", personality: "Confident, warm, honest",
+          loveLanguage: "Quality time", weekend: "Golf, travel, family",
+          music: "Jazz, Highlife", food: "Nigerian, Continental" },
+
+        { name: "Dorothy", age: 66, location: "Kampala, Uganda",
+          bio: "Retired hotel manager. Widow. I've hosted the world in my hotel; now I'd like someone to share my quiet mornings with.",
+          img: "https://i.pravatar.cc/600?img=89",
+          interests: ["Cooking", "Hospitality", "Travel", "Family"],
+          looking: "A quiet companion", relationship: "Companionship", work: "Retired Hotel Manager", industry: "Hospitality",
+          education: "Diploma", languages: "English, Luganda", religion: "Christian",
+          height: "5'5\" (165cm)", children: "2 children", hometown: "Entebbe, Uganda",
+          bodyType: "Average", smoking: "Never", drinking: "Occasionally", pets: "Dog lover",
+          zodiac: "Libra", income: "Middle", hasCar: "Yes", relocate: "No",
+          firstDate: "Lunch and a walk by the lake", personality: "Warm, elegant, kind",
+          loveLanguage: "Quality time", weekend: "Cooking, family, travel",
+          music: "Soul, Jazz", food: "Ugandan, Continental" }
+      ];
+
+      const feed = document.getElementById('feed');
+      const profileOverlay = document.getElementById('profileOverlay');
+      const matchOverlay = document.getElementById('matchOverlay');
+      const matchName = document.getElementById('matchName');
+      const chatScreen = document.getElementById('chatScreen');
+      const chatName = document.getElementById('chatName');
+      const chatAvatar = document.getElementById('chatAvatar');
+      const chatMessages = document.getElementById('chatMessages');
+      const chatEmpty = document.getElementById('chatEmpty');
+      const chatInput = document.getElementById('chatInput');
+
+      let currentMatch = null;
+      let detailProfileIndex = null;
+
+      function renderFeed() {
+        feed.innerHTML = '';
+        profiles.forEach((p, i) => {
+          const card = document.createElement('div');
+          card.className = 'profile-card';
+          card.dataset.index = i;
+
+          const tags = (p.interests || []).slice(0, 3)
+            .map(t => `<span class="tag">${t}</span>`).join('') +
+            (p.looking ? `<span class="tag highlight">${p.looking}</span>` : '');
+
+          card.innerHTML = `
+            <div class="profile-photo" id="photo-${i}" onclick="openProfile(${i})">
+              <img src="${p.img}" alt="${p.name}" draggable="false" loading="lazy"
+                   onerror="document.getElementById('photo-${i}').classList.add('no-img')">
+              <div class="fallback">${p.name.charAt(0)}</div>
+              <div class="online-dot">Online now</div>
+              <div class="tap-hint">Tap to view</div>
+              <div class="photo-overlay">
+                <h2>${p.name}, <span>${p.age}</span></h2>
+                <p class="location">${p.location}</p>
+              </div>
+            </div>
+            <div class="profile-body">
+              <p class="bio">${p.bio}</p>
+              <div class="quick-info">${tags}</div>
+              <div class="card-actions">
+                <button class="pass" onclick="event.stopPropagation();cardAction(${i}, 'pass')">Pass</button>
+                <button class="msg" onclick="event.stopPropagation();messageFromCard(${i})">Message</button>
+                <button class="like" onclick="event.stopPropagation();cardAction(${i}, 'like')">💕 Like</button>
+              </div>
+            </div>
+          `;
+          feed.appendChild(card);
+        });
+
+        const end = document.createElement('div');
+        end.className = 'feed-end';
+        end.innerHTML = `<h2>You've reached the end</h2><p>Refresh to start again.</p>`;
+        feed.appendChild(end);
+      }
+
+      function cardAction(index, action) {
+        const card = feed.querySelector(`.profile-card[data-index="${index}"]`);
+        if (!card || card.classList.contains('removed')) return;
+        const profile = profiles[index];
+        card.classList.add('removed');
+        setTimeout(() => card.remove(), 400);
+
+        if (action === 'like' && Math.random() < 0.35) {
+          currentMatch = profile;
+          setTimeout(() => {
+            matchName.textContent = profile.name;
+            matchOverlay.classList.add('show');
+          }, 450);
+        }
+      }
+
+      function messageFromCard(index) {
+        currentMatch = profiles[index];
+        openChat();
+      }
+
+      function setText(id, value) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value || '—';
+      }
+
+      function openProfile(index) {
+        const p = profiles[index];
+        detailProfileIndex = index;
+
+        document.getElementById('detailImg').src = p.img;
+        document.getElementById('detailName').textContent = p.name + ", ";
+        document.getElementById('detailAge').textContent = p.age;
+        document.getElementById('detailLocation').textContent = p.location;
+        document.getElementById('detailBio').textContent = p.bio;
+
+        document.getElementById('detailInterests').innerHTML =
+          (p.interests || []).map(t => `<span class="tag">${t}</span>`).join('');
+
+        setText('detailLooking', p.looking);
+        setText('detailRelationship', p.relationship);
+        setText('detailFirstDate', p.firstDate);
+        setText('detailLoveLanguage', p.loveLanguage);
+
+        setText('detailWork', p.work);
+        setText('detailIndustry', p.industry);
+        setText('detailEducation', p.education);
+        setText('detailIncome', p.income);
+
+        setText('detailHeight', p.height);
+        setText('detailBodyType', p.bodyType);
+        setText('detailHometown', p.hometown);
+        setText('detailZodiac', p.zodiac);
+        setText('detailReligion', p.religion);
+        setText('detailLanguages', p.languages);
+        setText('detailChildren', p.children);
+        setText('detailPets', p.pets);
+
+        setText('detailSmoking', p.smoking);
+        setText('detailDrinking', p.drinking);
+        setText('detailCar', p.hasCar);
+        setText('detailRelocate', p.relocate);
+
+        setText('detailPersonality', p.personality);
+        setText('detailWeekend', p.weekend);
+        setText('detailMusic', p.music);
+        setText('detailFood', p.food);
+
+        profileOverlay.classList.add('show');
+        profileOverlay.scrollTop = 0;
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeProfile() {
+        profileOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+
+      function detailAction(action) {
+        if (detailProfileIndex === null) return;
+        const idx = detailProfileIndex;
+        const profile = profiles[idx];
+        closeProfile();
+        if (action === 'msg') {
+          currentMatch = profile;
+          setTimeout(openChat, 250);
+        } else {
+          setTimeout(() => cardAction(idx, action), 200);
+        }
+      }
+
+      function closeMatch() {
+        matchOverlay.classList.remove('show');
+      }
+
+      function openChatFromMatch() {
+        matchOverlay.classList.remove('show');
+        openChat();
+      }
+
+      function openChat() {
+        if (!currentMatch) return;
+        chatName.textContent = currentMatch.name;
+        chatAvatar.src = currentMatch.img;
+        chatAvatar.onerror = function () { this.style.display = 'none'; };
+
+        chatMessages.innerHTML = '';
+        chatMessages.appendChild(chatEmpty);
+        chatEmpty.style.display = 'flex';
+
+        chatScreen.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => chatInput.focus(), 200);
+      }
+
+      function closeChat() {
+        chatScreen.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+
+      function addMessage(text) {
+        if (chatEmpty.parentNode === chatMessages) {
+          chatEmpty.style.display = 'none';
+        }
+        const div = document.createElement('div');
+        div.className = 'msg me';
+        div.textContent = text;
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function sendMessage() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+        addMessage(text);
+        chatInput.value = '';
+        chatInput.focus();
+      }
+
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        if (chatScreen.classList.contains('show')) closeChat();
+        else if (profileOverlay.classList.contains('show')) closeProfile();
+        else if (matchOverlay.classList.contains('show')) closeMatch();
+      });
+
+      renderFeed();
+
+      window.openProfile = openProfile;
+      window.closeProfile = closeProfile;
+      window.detailAction = detailAction;
+      window.cardAction = cardAction;
+      window.messageFromCard = messageFromCard;
+      window.closeMatch = closeMatch;
+      window.openChatFromMatch = openChatFromMatch;
+      window.openChat = openChat;
+      window.closeChat = closeChat;
+      window.sendMessage = sendMessage;
+      window.scrollToTop = scrollToTop;
+    })();
+  </script>
+</body>
+  </html>
