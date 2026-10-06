@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Browse serious singles on FIND TRUE LOVE — Black & White dating for adults 18+." />
+  <meta name="description" content="Browse serious singles on FIND TRUE LOVE — real connections, real people." />
   <title>Browse | FIND TRUE LOVE</title>
 
   <style>
@@ -208,7 +208,10 @@
       gap: 6px;
       text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
     }
-    .profile-photo .photo-overlay .location::before { content: "📍"; font-size: 12px; }
+    .profile-photo .photo-overlay .location::before {
+      content: "📍";
+      font-size: 12px;
+    }
 
     .profile-photo .tap-hint {
       position: absolute;
@@ -289,7 +292,10 @@
       font-weight: 700;
     }
 
-    .card-actions { display: flex; gap: 10px; }
+    .card-actions {
+      display: flex;
+      gap: 10px;
+    }
     .card-actions button {
       flex: 1;
       padding: 14px 8px;
@@ -320,7 +326,9 @@
       color: #fff;
       border: 1.5px solid rgba(255, 255, 255, 0.1);
     }
-    .card-actions .msg:hover { background: rgba(255, 255, 255, 0.14); }
+    .card-actions .msg:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
     .card-actions .like {
       background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
       color: #fff;
@@ -336,7 +344,11 @@
       padding: 60px 20px;
       color: #888;
     }
-    .feed-end h2 { color: #fff; font-size: 20px; margin-bottom: 8px; }
+    .feed-end h2 {
+      color: #fff;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
     .feed-end p { font-size: 14px; }
 
     .profile-overlay {
@@ -361,7 +373,11 @@
       overflow: hidden;
       background: #2a2a3e;
     }
-    .profile-hero img { width: 100%; height: 100%; object-fit: cover; }
+    .profile-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     .profile-hero .close-btn {
       position: absolute;
       top: 20px; left: 20px;
@@ -405,7 +421,10 @@
       align-items: center;
       gap: 6px;
     }
-    .profile-detail .location::before { content: "📍"; font-size: 13px; }
+    .profile-detail .location::before {
+      content: "📍";
+      font-size: 13px;
+    }
     .profile-detail .section-label {
       font-size: 11px;
       letter-spacing: 2px;
@@ -433,7 +452,11 @@
       color: #e8eaf0;
     }
 
-    .profile-detail .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .profile-detail .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
     .profile-detail .tags .tag {
       background: rgba(255, 255, 255, 0.06);
       color: #e8eaf0;
@@ -492,7 +515,9 @@
       color: #ff3b30;
       border: 1.5px solid rgba(255, 59, 48, 0.5);
     }
-    .profile-detail .cta-btn.pass:hover { background: rgba(255, 59, 48, 0.18); }
+    .profile-detail .cta-btn.pass:hover {
+      background: rgba(255, 59, 48, 0.18);
+    }
     .profile-detail .cta-btn.msg {
       background: rgba(255, 255, 255, 0.08);
       color: #fff;
@@ -618,6 +643,7 @@
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid rgba(233, 69, 96, 0.5);
+      background: #2a2a3e;
     }
     .chat-header .info { flex: 1; min-width: 0; }
     .chat-header .name {
@@ -775,9 +801,9 @@
   <div class="hearts" aria-hidden="true" id="hearts"></div>
 
   <header class="topbar">
-    <div class="logo">FIND TRUE LOVE</div>
+    <div class="logo" onclick="location.href='join.html'">FIND TRUE LOVE</div>
     <div class="actions">
-      <button onclick="scrollToTop()">Top</button>
+      <button onclick="location.href='matches.html'">Matches</button>
       <button onclick="location.href='index.html'">Sign out</button>
     </div>
   </header>
@@ -1503,7 +1529,7 @@
           music: "Indie, Electronic", food: "Dutch, Indonesian, Italian" },
 
         { name: "Beatrice", age: 68, location: "Nairobi, Kenya",
-          bio: "Retired headteacher. Widow, mother of three, grandmother of six. I still love to laugh and dance. Looking for a kind, honest companion to share the rest of life with.",
+          bio: "Retired headteacher. Widow, mother of three, grandmother of six. I still love to laugh and dance.",
           img: "https://i.pravatar.cc/600?img=71",
           interests: ["Gardening", "Church", "Cooking", "Grandchildren"],
           looking: "A kind companion", relationship: "Companionship", work: "Retired Headteacher", industry: "Education",
@@ -1516,7 +1542,7 @@
           music: "Gospel, Oldies", food: "Kenyan, Continental" },
 
         { name: "Solomon", age: 72, location: "Kisumu, Kenya",
-          bio: "Retired civil servant. Widower, father of four. Healthy, active, and still hopeful. I want someone to travel and grow old with.",
+          bio: "Retired civil servant. Widower, father of four. Healthy, active, and still hopeful.",
           img: "https://i.pravatar.cc/600?img=72",
           interests: ["Travel", "Fishing", "Church", "Reading"],
           looking: "A travel companion", relationship: "Companionship", work: "Retired Civil Servant", industry: "Government",
@@ -1529,7 +1555,7 @@
           music: "Gospel, Oldies", food: "Kenyan, Fish" },
 
         { name: "Josephine", age: 65, location: "Accra, Ghana",
-          bio: "Retired nurse. Widow. Still full of energy and laughter. I love cooking, singing, and good conversation. Seeking a gentleman.",
+          bio: "Retired nurse. Widow. Still full of energy and laughter. I love cooking, singing, and good conversation.",
           img: "https://i.pravatar.cc/600?img=73",
           interests: ["Cooking", "Singing", "Church", "Family"],
           looking: "A gentleman", relationship: "Companionship", work: "Retired Nurse", industry: "Healthcare",
@@ -1542,7 +1568,7 @@
           music: "Gospel, Highlife", food: "Ghanaian, Continental" },
 
         { name: "Emmanuel", age: 70, location: "Lagos, Nigeria",
-          bio: "Retired banker. Widower. Father of three, grandfather of five. I still wear a suit, still open doors, still believe in love.",
+          bio: "Retired banker. Widower. Father of three, grandfather of five. I still believe in love.",
           img: "https://i.pravatar.cc/600?img=74",
           interests: ["Reading", "Golf", "Travel", "Church"],
           looking: "A gentlewoman", relationship: "Companionship", work: "Retired Banker", industry: "Finance",
@@ -1555,7 +1581,7 @@
           music: "Jazz, Highlife", food: "Nigerian, Continental" },
 
         { name: "Miriam", age: 74, location: "Cape Town, SA",
-          bio: "Retired librarian. Widow. Book lover, gardener, and grandmother. Quiet and kind, but I still love a good laugh.",
+          bio: "Retired librarian. Widow. Book lover, gardener, and grandmother. Quiet and kind, still loves a good laugh.",
           img: "https://i.pravatar.cc/600?img=75",
           interests: ["Books", "Gardening", "Classical Music", "Grandchildren"],
           looking: "A gentle companion", relationship: "Companionship", work: "Retired Librarian", industry: "Education",
@@ -1568,7 +1594,7 @@
           music: "Classical, Opera", food: "South African, Continental" },
 
         { name: "Albert", age: 76, location: "London, UK",
-          bio: "Retired doctor. Widower. Two grown children. I've had a full life but it feels empty without someone to share it with.",
+          bio: "Retired doctor. Widower. Two grown children. I've had a full life but it feels empty without someone.",
           img: "https://i.pravatar.cc/600?img=76",
           interests: ["Reading", "Theatre", "Travel", "Wine"],
           looking: "A late-life partner", relationship: "Companionship", work: "Retired Doctor", industry: "Healthcare",
@@ -1581,7 +1607,7 @@
           music: "Classical, Jazz", food: "British, French" },
 
         { name: "Florence", age: 63, location: "Kampala, Uganda",
-          bio: "Retired businesswoman. Widow. I raised five children and built my own shop. Now it's my turn to be loved.",
+          bio: "Retired businesswoman. Widow. I raised five children and built my own shop. Now it's my turn.",
           img: "https://i.pravatar.cc/600?img=77",
           interests: ["Business", "Church", "Cooking", "Family"],
           looking: "A good man", relationship: "Companionship", work: "Retired Businesswoman", industry: "Trade",
@@ -1594,7 +1620,7 @@
           music: "Gospel, Oldies", food: "Ugandan, Continental" },
 
         { name: "George", age: 71, location: "Nairobi, Kenya",
-          bio: "Retired military officer. Widower. Father of two, grandfather of four. I keep fit, keep busy, and keep hoping.",
+          bio: "Retired military officer. Widower. Father of two, grandfather of four. I keep fit, keep busy.",
           img: "https://i.pravatar.cc/600?img=78",
           interests: ["Fitness", "Reading", "Fishing", "Church"],
           looking: "A calm companion", relationship: "Companionship", work: "Retired Military", industry: "Military",
@@ -1607,7 +1633,7 @@
           music: "Gospel, Country", food: "Kenyan, Continental" },
 
         { name: "Priscilla", age: 66, location: "Abuja, Nigeria",
-          bio: "Retired teacher. Widow. I still teach Sunday school and I still have a soft spot for a kind, honest man.",
+          bio: "Retired teacher. Widow. I still teach Sunday school and I still have a soft spot for a kind man.",
           img: "https://i.pravatar.cc/600?img=79",
           interests: ["Teaching", "Church", "Reading", "Grandchildren"],
           looking: "A kind man", relationship: "Companionship", work: "Retired Teacher", industry: "Education",
@@ -1620,7 +1646,7 @@
           music: "Gospel, Hymns", food: "Nigerian, Continental" },
 
         { name: "Harold", age: 78, location: "Sydney, Australia",
-          bio: "Retired judge. Widower. Still sharp, still curious, still hoping. I would love someone to share books and quiet evenings with.",
+          bio: "Retired judge. Widower. Still sharp, still curious, still hoping.",
           img: "https://i.pravatar.cc/600?img=80",
           interests: ["Books", "Classical Music", "Golf", "Theatre"],
           looking: "A late-life companion", relationship: "Companionship", work: "Retired Judge", industry: "Legal",
@@ -1646,7 +1672,7 @@
           music: "Gospel, Oldies", food: "South African, Continental" },
 
         { name: "Robert", age: 67, location: "Manchester, UK",
-          bio: "Retired engineer. Divorced many years ago. Children grown and gone. Looking for someone to grow old with, honestly and warmly.",
+          bio: "Retired engineer. Divorced. Children grown. Looking for someone to grow old with, honestly and warmly.",
           img: "https://i.pravatar.cc/600?img=82",
           interests: ["Chess", "Reading", "Walking", "Travel"],
           looking: "Someone to grow old with", relationship: "Long-term", work: "Retired Engineer", industry: "Engineering",
@@ -1659,7 +1685,7 @@
           music: "Classical, Jazz", food: "British, Continental" },
 
         { name: "Rose", age: 72, location: "Nairobi, Kenya",
-          bio: "Retired farmer. Widow. I raised seven children on a small farm and I am still up before the sun. Seeking a kind companion.",
+          bio: "Retired farmer. Widow. I raised seven children on a small farm and I am still up before the sun.",
           img: "https://i.pravatar.cc/600?img=83",
           interests: ["Farming", "Church", "Family", "Gardening"],
           looking: "A kind companion", relationship: "Companionship", work: "Retired Farmer", industry: "Agriculture",
@@ -1672,7 +1698,7 @@
           music: "Gospel, Kikuyu hymns", food: "Kenyan, Traditional" },
 
         { name: "Charles", age: 73, location: "Toronto, Canada",
-          bio: "Retired teacher. Widower. Father of two, grandfather of four. Still lively, still learning, still looking for love.",
+          bio: "Retired teacher. Widower. Father of two, grandfather of four. Still lively, still learning.",
           img: "https://i.pravatar.cc/600?img=84",
           interests: ["Books", "History", "Travel", "Grandchildren"],
           looking: "A thoughtful companion", relationship: "Companionship", work: "Retired Teacher", industry: "Education",
@@ -1685,7 +1711,7 @@
           music: "Classical, Jazz", food: "Canadian, Continental" },
 
         { name: "Janet", age: 64, location: "Lusaka, Zambia",
-          bio: "Retired nurse. Widow. Two grown children. I love to cook, sing in the choir, and meet new people. Looking for a warm companion.",
+          bio: "Retired nurse. Widow. I love to cook, sing in the choir, and meet new people.",
           img: "https://i.pravatar.cc/600?img=85",
           interests: ["Cooking", "Singing", "Church", "Family"],
           looking: "A warm companion", relationship: "Companionship", work: "Retired Nurse", industry: "Healthcare",
@@ -1698,7 +1724,7 @@
           music: "Gospel, Hymns", food: "Zambian, Continental" },
 
         { name: "Francis", age: 75, location: "Kumasi, Ghana",
-          bio: "Retired headmaster. Widower. Father of five, grandfather of twelve. I still read every day and still hope for love.",
+          bio: "Retired headmaster. Widower. Father of five, grandfather of twelve. I still read every day.",
           img: "https://i.pravatar.cc/600?img=86",
           interests: ["Reading", "Church", "Family", "Gardening"],
           looking: "A loving companion", relationship: "Companionship", work: "Retired Headmaster", industry: "Education",
@@ -1711,7 +1737,7 @@
           music: "Gospel, Highlife", food: "Ghanaian, Continental" },
 
         { name: "Edith", age: 70, location: "Cape Town, SA",
-          bio: "Retired accountant. Widow. I love painting, the sea, and my grandchildren. Looking for a gentle man with a good sense of humour.",
+          bio: "Retired accountant. Widow. I love painting, the sea, and my grandchildren.",
           img: "https://i.pravatar.cc/600?img=87",
           interests: ["Painting", "Beach", "Reading", "Grandchildren"],
           looking: "A gentle man", relationship: "Companionship", work: "Retired Accountant", industry: "Finance",
@@ -1724,7 +1750,7 @@
           music: "Classical, Jazz", food: "South African, Continental" },
 
         { name: "Henry", age: 68, location: "Lagos, Nigeria",
-          bio: "Retired oil executive. Divorced. Children grown. I want to slow down, travel, and share my life with someone real.",
+          bio: "Retired oil executive. Divorced. Children grown. I want to slow down, travel, and share life.",
           img: "https://i.pravatar.cc/600?img=88",
           interests: ["Travel", "Golf", "Wine", "Reading"],
           looking: "A real partner", relationship: "Long-term", work: "Retired Oil Executive", industry: "Oil & Gas",
@@ -1737,7 +1763,7 @@
           music: "Jazz, Highlife", food: "Nigerian, Continental" },
 
         { name: "Dorothy", age: 66, location: "Kampala, Uganda",
-          bio: "Retired hotel manager. Widow. I've hosted the world in my hotel; now I'd like someone to share my quiet mornings with.",
+          bio: "Retired hotel manager. Widow. I've hosted the world; now I'd like someone to share quiet mornings with.",
           img: "https://i.pravatar.cc/600?img=89",
           interests: ["Cooking", "Hospitality", "Travel", "Family"],
           looking: "A quiet companion", relationship: "Companionship", work: "Retired Hotel Manager", industry: "Hospitality",
@@ -1806,6 +1832,26 @@
         feed.appendChild(end);
       }
 
+      function saveMatchToStorage(profile) {
+        try {
+          const KEY = 'ftl_matches_v1';
+          const existing = JSON.parse(localStorage.getItem(KEY) || '[]');
+          const id = 'm-' + profile.name.toLowerCase() + '-' + Date.now();
+          existing.push({
+            id: id,
+            name: profile.name,
+            age: profile.age,
+            location: profile.location,
+            img: profile.img,
+            matchedAt: Date.now(),
+            messages: []
+          });
+          localStorage.setItem(KEY, JSON.stringify(existing));
+        } catch (err) {
+          console.error('Failed to save match:', err);
+        }
+      }
+
       function cardAction(index, action) {
         const card = feed.querySelector(`.profile-card[data-index="${index}"]`);
         if (!card || card.classList.contains('removed')) return;
@@ -1815,6 +1861,7 @@
 
         if (action === 'like' && Math.random() < 0.35) {
           currentMatch = profile;
+          saveMatchToStorage(profile);
           setTimeout(() => {
             matchName.textContent = profile.name;
             matchOverlay.classList.add('show');
@@ -1945,10 +1992,6 @@
         chatInput.focus();
       }
 
-      function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-
       document.addEventListener('keydown', (e) => {
         if (e.key !== 'Escape') return;
         if (chatScreen.classList.contains('show')) closeChat();
@@ -1968,8 +2011,7 @@
       window.openChat = openChat;
       window.closeChat = closeChat;
       window.sendMessage = sendMessage;
-      window.scrollToTop = scrollToTop;
     })();
   </script>
 </body>
-  </html>
+</html>
