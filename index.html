@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Join FIND TRUE LOVE — serious dating for Black & White singles. Create your free account today." />
+  <meta name="description" content="Join FIND TRUE LOVE — serious dating for singles. Create your free account today." />
   <title>Create Your Account | FIND TRUE LOVE</title>
 
   <style>
@@ -284,146 +284,7 @@
     }
     .grid-2 .field { margin-bottom: 0; }
 
-    /* ============================================================
-       CUSTOM DROPDOWN
-       ============================================================ */
-    .dropdown { position: relative; }
-
-    .dropdown-trigger {
-      width: 100%;
-      padding: 13px 16px;
-      border: 1.5px solid var(--line);
-      border-radius: var(--radius-sm);
-      font-size: 15px;
-      font-family: inherit;
-      font-weight: 500;
-      background: #fafafe;
-      color: var(--ink);
-      cursor: pointer;
-      text-align: left;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      transition: all 0.25s var(--transition);
-      box-shadow: none;
-      margin-top: 0;
-    }
-    .dropdown-trigger:hover { border-color: var(--accent-2); }
-    .dropdown-trigger:focus,
-    .dropdown-trigger.open {
-      outline: none;
-      border-color: var(--brand-2);
-      background: #fff;
-      box-shadow: 0 0 0 4px rgba(233, 69, 96, 0.14), 0 4px 12px rgba(233, 69, 96, 0.12);
-    }
-    .dropdown-trigger[aria-invalid="true"] {
-      border-color: var(--error);
-      background: #fff5f7;
-    }
-    .dropdown-trigger .placeholder { color: #b8b8c8; }
-    .dropdown-trigger .value { color: var(--ink); font-weight: 600; }
-
-    .dropdown-trigger svg {
-      flex-shrink: 0;
-      color: var(--brand-2);
-      transition: transform 0.25s var(--transition);
-    }
-    .dropdown-trigger.open svg { transform: rotate(180deg); }
-
-    .dropdown-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(10, 10, 25, 0.35);
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s;
-      z-index: 40;
-    }
-    .dropdown-overlay.show { opacity: 1; pointer-events: auto; }
-
-    .dropdown-menu {
-      position: absolute;
-      top: calc(100% + 8px);
-      left: 0;
-      right: 0;
-      background: #fff;
-      border-radius: var(--radius-sm);
-      box-shadow: 0 20px 50px rgba(26, 26, 46, 0.25), 0 0 0 1px rgba(26, 26, 46, 0.06);
-      padding: 6px;
-      z-index: 50;
-      opacity: 0;
-      transform: translateY(-6px) scale(0.98);
-      pointer-events: none;
-      transition: opacity 0.22s var(--transition), transform 0.22s var(--transition);
-      max-height: 300px;
-      overflow-y: auto;
-    }
-    .dropdown.open .dropdown-menu {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      pointer-events: auto;
-    }
-
-    .dropdown-option {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      width: 100%;
-      padding: 13px 14px;
-      font-size: 15px;
-      font-family: inherit;
-      font-weight: 500;
-      color: var(--ink);
-      background: transparent;
-      border: none;
-      border-radius: 8px;
-      text-align: left;
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s;
-      margin-top: 0;
-      box-shadow: none;
-      transform: none;
-    }
-    .dropdown-option:hover,
-    .dropdown-option:focus {
-      background: linear-gradient(135deg, rgba(255,77,109,0.08), rgba(255,143,163,0.06));
-      outline: none;
-      color: var(--brand-3);
-    }
-    .dropdown-option .radio {
-      width: 20px; height: 20px;
-      border: 2px solid #c8c8d6;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: border-color 0.2s;
-      position: relative;
-    }
-    .dropdown-option .radio::after {
-      content: "";
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--brand-2);
-      transform: scale(0);
-      transition: transform 0.2s var(--transition);
-    }
-    .dropdown-option[aria-selected="true"] {
-      background: linear-gradient(135deg, rgba(255,77,109,0.1), rgba(255,143,163,0.07));
-      color: var(--brand-3);
-      font-weight: 700;
-    }
-    .dropdown-option[aria-selected="true"] .radio { border-color: var(--brand-2); }
-    .dropdown-option[aria-selected="true"] .radio::after { transform: scale(1); }
-
-    /* ============================================================
-       INTERESTS
-       ============================================================ */
+    /* Interests */
     .interests {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -480,9 +341,7 @@
     .interest-item:has(input:checked)::after { opacity: 1; }
     .interest-item:has(input:checked) input[type="checkbox"] { transform: scale(1.15); }
 
-    /* ============================================================
-       RANGE SLIDERS
-       ============================================================ */
+    /* Range slider */
     .range-group { margin-bottom: 20px; }
     .range-group label { margin-bottom: 12px; }
     .range-row {
@@ -635,7 +494,26 @@
       50%      { box-shadow: 0 16px 40px rgba(233, 69, 96, 0.4), 0 0 0 20px rgba(233, 69, 96, 0); }
     }
     .success h2 { color: var(--ink); margin-bottom: 10px; font-size: 22px; }
-    .success p { color: var(--ink-soft); font-size: 14.5px; max-width: 360px; margin: 0 auto; }
+    .success p { color: var(--ink-soft); font-size: 14.5px; max-width: 360px; margin: 0 auto 20px; }
+    .success .browse-btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 12px 30px rgba(233, 69, 96, 0.45);
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .success .browse-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(233, 69, 96, 0.6);
+    }
 
     .honeypot {
       position: absolute !important;
@@ -659,27 +537,6 @@
       .interests { grid-template-columns: 1fr; }
       .range-row { flex-wrap: wrap; }
       .range-value { width: 100%; }
-
-      .dropdown-menu {
-        position: fixed;
-        top: auto;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        border-radius: 20px 20px 0 0;
-        padding: 14px 14px 24px;
-        max-height: 70vh;
-        transform: translateY(100%);
-      }
-      .dropdown.open .dropdown-menu { transform: translateY(0); }
-      .dropdown-menu::before {
-        content: "";
-        display: block;
-        width: 40px; height: 4px;
-        background: #ddd;
-        border-radius: 4px;
-        margin: 0 auto 14px;
-      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -694,7 +551,6 @@
 </head>
 <body>
   <div class="hearts" aria-hidden="true" id="hearts"></div>
-  <div class="dropdown-overlay" id="dropdown-overlay"></div>
 
   <main class="container">
     <section id="form-wrapper" aria-labelledby="form-heading">
@@ -704,7 +560,7 @@
       </header>
 
       <h2 id="form-heading">Create Your Account</h2>
-      <p class="subtitle">18+ only. Serious dating for Black &amp; White singles.</p>
+      <p class="subtitle">18+ only. Serious dating for singles.</p>
 
       <form id="signup-form" novalidate>
         <div class="honeypot" aria-hidden="true">
@@ -715,7 +571,6 @@
         <fieldset>
           <legend>Account details</legend>
 
-          <!-- ========== BASIC INFO ========== -->
           <h3 class="section-heading">Basic Information</h3>
 
           <div class="field">
@@ -756,50 +611,6 @@
             </div>
           </div>
 
-          <!-- ========== RACE / ETHNICITY ========== -->
-          <h3 class="section-heading">Race / Ethnicity</h3>
-
-          <div class="field">
-            <label id="my-race-label">My race / ethnicity <span class="required" aria-hidden="true">*</span></label>
-            <div class="dropdown" id="my-race-dd">
-              <button type="button" class="dropdown-trigger"
-                id="my-race-trigger"
-                aria-haspopup="listbox"
-                aria-expanded="false"
-                aria-labelledby="my-race-label my-race-trigger">
-                <span class="placeholder" id="my-race-value">Select...</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-              <div class="dropdown-menu" role="listbox" id="my-race-menu" tabindex="-1"></div>
-              <input type="hidden" id="race" name="race" required />
-            </div>
-            <p class="error-msg" id="race-error" role="alert"></p>
-          </div>
-
-          <div class="field">
-            <label id="looking-race-label">I am looking for <span class="required" aria-hidden="true">*</span></label>
-            <div class="dropdown" id="looking-race-dd">
-              <button type="button" class="dropdown-trigger"
-                id="looking-race-trigger"
-                aria-haspopup="listbox"
-                aria-expanded="false"
-                aria-labelledby="looking-race-label looking-race-trigger">
-                <span class="placeholder" id="looking-race-value">Select...</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-              <div class="dropdown-menu" role="listbox" id="looking-race-menu" tabindex="-1"></div>
-              <input type="hidden" id="looking_for" name="looking_for" required />
-            </div>
-            <p class="error-msg" id="looking_for-error" role="alert"></p>
-          </div>
-
-          <!-- ========== LOCATION ========== -->
           <h3 class="section-heading">Location</h3>
 
           <div class="grid-2">
@@ -838,7 +649,6 @@
             </div>
           </div>
 
-          <!-- ========== BACKGROUND ========== -->
           <h3 class="section-heading">Background</h3>
 
           <div class="grid-2">
@@ -862,7 +672,6 @@
             </div>
           </div>
 
-          <!-- ========== PARTNER PREFERENCES ========== -->
           <h3 class="section-heading">Partner Preferences</h3>
 
           <div class="range-group">
@@ -889,7 +698,6 @@
             </select>
           </div>
 
-          <!-- ========== INTERESTS ========== -->
           <h3 class="section-heading">Interests <span class="optional">(select all that apply)</span></h3>
 
           <div class="interests" role="group" aria-label="Interests">
@@ -905,7 +713,6 @@
             <label class="interest-item"><input type="checkbox" name="interests" value="Art" /> Art &amp; Culture</label>
           </div>
 
-          <!-- ========== LIFESTYLE ========== -->
           <h3 class="section-heading">Lifestyle</h3>
 
           <div class="grid-2">
@@ -930,7 +737,6 @@
             </div>
           </div>
 
-          <!-- ========== CONTACT ========== -->
           <h3 class="section-heading">Contact Details</h3>
 
           <div class="field">
@@ -961,7 +767,6 @@
             </div>
           </div>
 
-          <!-- ========== CONFIRMATION ========== -->
           <h3 class="section-heading">Confirmation</h3>
 
           <div class="field">
@@ -997,6 +802,7 @@
       <div class="icon" aria-hidden="true">✓</div>
       <h2>Welcome to FIND TRUE LOVE</h2>
       <p>Your details have been received. We'll review your profile and be in touch within 24 hours.</p>
+      <a href="join.html" class="browse-btn">Continue →</a>
     </section>
   </main>
 
@@ -1004,7 +810,7 @@
     (function () {
       'use strict';
 
-      /* ---------- Floating hearts ---------- */
+      /* Floating hearts */
       (function spawnHearts() {
         const container = document.getElementById('hearts');
         const symbols = ['❤', '♥', '❤', '💕', '❤'];
@@ -1022,153 +828,6 @@
         }
       })();
 
-      /* ============================================================
-         CUSTOM DROPDOWN COMPONENT
-         ============================================================ */
-      const RACE_OPTIONS = [
-        { value: 'Black singles', label: 'Black singles' },
-        { value: 'White singles', label: 'White singles' },
-        { value: 'Both / Open to all', label: 'Both / Open to all' },
-        { value: 'Other', label: 'Other' },
-      ];
-
-      const MY_RACE_OPTIONS = [
-        { value: 'Black', label: 'Black' },
-        { value: 'White', label: 'White' },
-        { value: 'Mixed', label: 'Mixed' },
-        { value: 'Asian', label: 'Asian' },
-        { value: 'Other', label: 'Other' },
-        { value: 'Prefer not to say', label: 'Prefer not to say' },
-      ];
-
-      const overlay = document.getElementById('dropdown-overlay');
-
-      function createDropdown(config) {
-        const { rootId, triggerId, valueId, menuId, hiddenId, options } = config;
-        const root = document.getElementById(rootId);
-        const trigger = document.getElementById(triggerId);
-        const valueEl = document.getElementById(valueId);
-        const menu = document.getElementById(menuId);
-        const hidden = document.getElementById(hiddenId);
-
-        let highlightedIndex = -1;
-
-        options.forEach((opt, i) => {
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'dropdown-option';
-          btn.setAttribute('role', 'option');
-          btn.setAttribute('data-value', opt.value);
-          btn.setAttribute('aria-selected', 'false');
-          btn.innerHTML = `<span>${opt.label}</span><span class="radio" aria-hidden="true"></span>`;
-          btn.addEventListener('click', () => selectOption(opt, i));
-          menu.appendChild(btn);
-        });
-
-        const optionEls = Array.from(menu.querySelectorAll('.dropdown-option'));
-
-        function selectOption(opt, index) {
-          hidden.value = opt.value;
-          valueEl.textContent = opt.label;
-          valueEl.classList.remove('placeholder');
-          valueEl.classList.add('value');
-          optionEls.forEach((el, i) => {
-            el.setAttribute('aria-selected', i === index ? 'true' : 'false');
-          });
-          close();
-          trigger.focus();
-
-          const fieldName = hidden.name;
-          const errEl = document.getElementById(`${fieldName}-error`);
-          if (errEl) {
-            errEl.textContent = '';
-            errEl.classList.remove('show');
-          }
-          trigger.setAttribute('aria-invalid', 'false');
-        }
-
-        function open() {
-          document.querySelectorAll('.dropdown.open').forEach((d) => {
-            if (d !== root) {
-              d.classList.remove('open');
-              const t = d.querySelector('.dropdown-trigger');
-              if (t) t.setAttribute('aria-expanded', 'false');
-            }
-          });
-          root.classList.add('open');
-          trigger.classList.add('open');
-          trigger.setAttribute('aria-expanded', 'true');
-          overlay.classList.add('show');
-          highlightedIndex = optionEls.findIndex((el) => el.getAttribute('aria-selected') === 'true');
-        }
-
-        function close() {
-          root.classList.remove('open');
-          trigger.classList.remove('open');
-          trigger.setAttribute('aria-expanded', 'false');
-          overlay.classList.remove('show');
-        }
-
-        function toggle() {
-          if (root.classList.contains('open')) close();
-          else open();
-        }
-
-        trigger.addEventListener('click', (e) => {
-          e.stopPropagation();
-          toggle();
-        });
-
-        trigger.addEventListener('keydown', (e) => {
-          if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === ' ') {
-            e.preventDefault();
-            if (!root.classList.contains('open')) open();
-          }
-        });
-
-        menu.addEventListener('keydown', (e) => {
-          if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            highlightedIndex = Math.min(highlightedIndex + 1, optionEls.length - 1);
-            optionEls[highlightedIndex].focus();
-          } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            highlightedIndex = Math.max(highlightedIndex - 1, 0);
-            optionEls[highlightedIndex].focus();
-          } else if (e.key === 'Escape') {
-            close();
-            trigger.focus();
-          }
-        });
-
-        overlay.addEventListener('click', () => close());
-
-        return {
-          close,
-          open,
-          isOpen: () => root.classList.contains('open'),
-        };
-      }
-
-      createDropdown({
-        rootId: 'my-race-dd',
-        triggerId: 'my-race-trigger',
-        valueId: 'my-race-value',
-        menuId: 'my-race-menu',
-        hiddenId: 'race',
-        options: MY_RACE_OPTIONS,
-      });
-
-      createDropdown({
-        rootId: 'looking-race-dd',
-        triggerId: 'looking-race-trigger',
-        valueId: 'looking-race-value',
-        menuId: 'looking-race-menu',
-        hiddenId: 'looking_for',
-        options: RACE_OPTIONS,
-      });
-
-      /* ---------- Config ---------- */
       const CONFIG = {
         endpoint: '/api/notify-signup',
         phonePattern: /^\+?[\d\s\-()]{7,20}$/,
@@ -1186,7 +845,6 @@
       const ageMax = document.getElementById('age_range_max');
       const ageDisplay = document.getElementById('age-range-display');
 
-      /* ---------- Helpers ---------- */
       const setError = (fieldName, message) => {
         const field = form.elements[fieldName];
         const errorEl = document.getElementById(`${fieldName}-error`);
@@ -1196,10 +854,6 @@
         if (errorEl) {
           errorEl.textContent = message || '';
           errorEl.classList.toggle('show', Boolean(message));
-        }
-        const trigger = document.getElementById(`${fieldName}-trigger`);
-        if (trigger && trigger.classList.contains('dropdown-trigger')) {
-          trigger.setAttribute('aria-invalid', message ? 'true' : 'false');
         }
       };
 
@@ -1223,7 +877,6 @@
         return age;
       };
 
-      /* ---------- Age range display ---------- */
       const updateAgeDisplay = () => {
         let min = parseInt(ageMin.value, 10);
         let max = parseInt(ageMax.value, 10);
@@ -1234,7 +887,6 @@
       ageMax.addEventListener('input', updateAgeDisplay);
       updateAgeDisplay();
 
-      /* ---------- Validation ---------- */
       const validate = (payload) => {
         clearAllErrors();
         let firstInvalid = null;
@@ -1244,7 +896,6 @@
           if (!firstInvalid) {
             const el = form.elements[name];
             if (el && el.focus) firstInvalid = el;
-            else firstInvalid = document.getElementById(`${name}-trigger`);
           }
         };
 
@@ -1261,9 +912,6 @@
 
         if (!payload.gender) fail('gender', 'Please select an option.');
         if (!payload.relationship_goal_top) fail('relationship_goal_top', 'Please select what you are looking for.');
-
-        if (!payload.race) fail('race', 'Please select your race / ethnicity.');
-        if (!payload.looking_for) fail('looking_for', 'Please select what you are looking for.');
 
         if (!payload.country) fail('country', 'Please select your country.');
         if (!payload.city.trim()) fail('city', 'Please enter your city or town.');
@@ -1291,7 +939,6 @@
         return firstInvalid;
       };
 
-      /* ---------- Loading ---------- */
       const setLoading = (isLoading) => {
         submitBtn.disabled = isLoading;
         submitBtn.classList.toggle('loading', isLoading);
@@ -1306,19 +953,12 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       };
 
-      /* ---------- Submit ---------- */
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        document.querySelectorAll('.dropdown.open').forEach((d) => d.classList.remove('open'));
-        overlay.classList.remove('show');
-
         const formData = new FormData(form);
 
-        if (formData.get('bot-field')) {
-          showSuccess();
-          return;
-        }
+        if (formData.get('bot-field')) { showSuccess(); return; }
 
         const interests = formData.getAll('interests');
         const payload = Object.fromEntries(formData.entries());
@@ -1363,7 +1003,6 @@
         }
       });
 
-      /* ---------- Live error clearing ---------- */
       form.addEventListener('input', (e) => {
         const name = e.target.name;
         if (name && document.getElementById(`${name}-error`)) {
@@ -1373,4 +1012,4 @@
     })();
   </script>
 </body>
-  </html>
+</html>
