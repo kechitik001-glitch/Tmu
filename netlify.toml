@@ -1,0 +1,8 @@
+[build]
+  functions = "netlify/functions"
+  publish = "."
+
+[[redirects]]
+  from = "/api/notify-signup"
+  to = "/.netlify/functions/notify-signup"
+  status = 200 
