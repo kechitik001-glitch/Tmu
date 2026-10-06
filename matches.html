@@ -76,7 +76,6 @@
       100% { transform: translateY(-110vh) rotate(360deg) scale(1.2); opacity: 0; }
     }
 
-    /* ---------- TOP BAR ---------- */
     .topbar {
       position: sticky;
       top: 0;
@@ -120,7 +119,6 @@
     }
     .topbar .actions button:active { transform: scale(0.95); }
 
-    /* ---------- TAB SWITCHER ---------- */
     .tabs {
       max-width: 620px;
       margin: 0 auto;
@@ -149,7 +147,6 @@
       box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
     }
 
-    /* ---------- MAIN PANEL ---------- */
     .panel {
       max-width: 620px;
       margin: 0 auto;
@@ -167,7 +164,6 @@
       margin-bottom: 22px;
     }
 
-    /* ---------- NEW MATCHES (horizontal scroll) ---------- */
     .new-matches {
       display: flex;
       gap: 14px;
@@ -238,7 +234,6 @@
       text-overflow: ellipsis;
     }
 
-    /* ---------- CONVERSATION LIST ---------- */
     .conv-list {
       display: flex;
       flex-direction: column;
@@ -346,7 +341,6 @@
       color: #ff3b30;
     }
 
-    /* ---------- EMPTY STATE ---------- */
     .empty-state {
       text-align: center;
       padding: 70px 24px;
@@ -391,7 +385,6 @@
       box-shadow: 0 16px 40px rgba(233, 69, 96, 0.6);
     }
 
-    /* ---------- CHAT OVERLAY ---------- */
     .chat-screen {
       position: fixed;
       inset: 0;
@@ -505,13 +498,6 @@
       border-bottom-right-radius: 6px;
       box-shadow: 0 4px 14px rgba(233, 69, 96, 0.28);
     }
-    .msg.time {
-      font-size: 11px;
-      color: #7a7a90;
-      align-self: center;
-      padding: 4px 0;
-      letter-spacing: 0.5px;
-    }
 
     .chat-input {
       padding: 12px 16px 16px;
@@ -563,7 +549,6 @@
     }
     .chat-input button:active { transform: scale(0.97); }
 
-    /* ---------- CONFIRM DELETE ---------- */
     .confirm-overlay {
       position: fixed;
       inset: 0;
@@ -682,7 +667,6 @@
     </section>
   </main>
 
-  <!-- CHAT -->
   <div class="chat-screen" id="chatScreen">
     <div class="chat-header">
       <div class="back" onclick="closeChat()">&#8592;</div>
@@ -706,7 +690,6 @@
     </div>
   </div>
 
-  <!-- CONFIRM DELETE -->
   <div class="confirm-overlay" id="confirmOverlay">
     <div class="confirm-box">
       <h3>Delete conversation?</h3>
@@ -722,7 +705,6 @@
     (function () {
       'use strict';
 
-      /* ---------- Floating hearts ---------- */
       (function spawnHearts() {
         const container = document.getElementById('hearts');
         const symbols = ['❤', '♥', '❤', '💕', '❤'];
@@ -740,12 +722,6 @@
         }
       })();
 
-      /* ============================================================
-         STORAGE
-         Matches are stored in localStorage so they survive reloads.
-         Each match: { id, name, age, location, img, matchedAt,
-                       messages: [{ text, time, from: 'me' }] }
-         ============================================================ */
       const STORAGE_KEY = 'ftl_matches_v1';
 
       function loadMatches() {
@@ -768,10 +744,6 @@
         }
       }
 
-      /* ---------- Demo seed ----------
-         If nothing is stored yet, seed a couple of sample matches
-         so the page isn't empty on first visit.
-      */
       function seedIfEmpty() {
         const existing = loadMatches();
         if (existing.length > 0) return existing;
@@ -804,9 +776,6 @@
         return seed;
       }
 
-      /* ============================================================
-         RENDER
-         ============================================================ */
       const newRow = document.getElementById('new-matches-row');
       const newSection = document.getElementById('new-matches-section');
       const convList = document.getElementById('conv-list');
@@ -845,19 +814,15 @@
           return bLast - aLast;
         });
 
-        /* New matches: ones with zero messages from the other side,
-           matched in the last 48 hours. */
         const newMatches = list.filter(m =>
           Date.now() - m.matchedAt < 1000 * 60 * 60 * 48 &&
           m.messages.filter(x => x.from === 'them').length === 0
         );
 
-        /* Chats tab: only conversations with at least one message. */
         const conversations = activeTab === 'chats'
           ? list.filter(m => m.messages.length > 0)
           : list;
 
-        /* NEW MATCHES ROW */
         newRow.innerHTML = '';
         if (newMatches.length && activeTab === 'all') {
           newSection.style.display = 'block';
@@ -878,7 +843,6 @@
           newSection.style.display = 'none';
         }
 
-        /* CONVERSATIONS LIST */
         convList.innerHTML = '';
         if (conversations.length === 0) {
           emptyState.style.display = 'block';
@@ -923,9 +887,6 @@
         });
       }
 
-      /* ============================================================
-         TABS
-         ============================================================ */
       function switchTab(tab) {
         activeTab = tab;
         document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -934,9 +895,6 @@
         render();
       }
 
-      /* ============================================================
-         CHAT
-         ============================================================ */
       const chatScreen = document.getElementById('chatScreen');
       const chatAvatar = document.getElementById('chatAvatar');
       const chatName = document.getElementById('chatName');
@@ -958,7 +916,6 @@
           this.style.background = 'linear-gradient(135deg, #e94560, #6a1b3a)';
         };
 
-        /* Render existing messages */
         chatMessages.innerHTML = '';
         if (m.messages.length === 0) {
           chatMessages.appendChild(chatEmpty);
@@ -1011,9 +968,6 @@
         chatInput.focus();
       }
 
-      /* ============================================================
-         DELETE
-         ============================================================ */
       const confirmOverlay = document.getElementById('confirmOverlay');
       const confirmText = document.getElementById('confirm-text');
       let pendingDeleteId = null;
@@ -1039,20 +993,15 @@
         render();
       }
 
-      /* ============================================================
-         INIT
-         ============================================================ */
       allMatches = seedIfEmpty();
       render();
 
-      /* ---------- ESC to close overlays ---------- */
       document.addEventListener('keydown', (e) => {
         if (e.key !== 'Escape') return;
         if (chatScreen.classList.contains('show')) closeChat();
         else if (confirmOverlay.classList.contains('show')) closeConfirm();
       });
 
-      /* Expose to inline handlers */
       window.switchTab = switchTab;
       window.openChat = openChat;
       window.closeChat = closeChat;
