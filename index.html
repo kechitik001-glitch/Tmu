@@ -6,6 +6,10 @@
   <meta name="description" content="Join FIND TRUE LOVE — serious dating for singles. Create your free account today." />
   <title>Create Your Account | FIND TRUE LOVE</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --brand-1: #ff4d6d;
@@ -13,13 +17,16 @@
       --brand-3: #c73e54;
       --accent-1: #ff8fa3;
       --accent-2: #ffb3c1;
-      --ink: #1a1a2e;
+      --gold: #f4c95d;
+      --ink: #0f0f1e;
       --ink-soft: #6b6b80;
-      --line: #e6e6ef;
-      --line-soft: #f3f3f9;
-      --radius-sm: 10px;
-      --radius-lg: 22px;
-      --shadow-card: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+      --line: #e8e8f0;
+      --line-soft: #f5f5fa;
+      --radius-sm: 12px;
+      --radius-lg: 24px;
+      --radius-pill: 100px;
+      --shadow-form: 0 20px 60px rgba(0, 0, 0, 0.15);
+      --shadow-btn: 0 14px 36px rgba(233, 69, 96, 0.45);
       --error: #e11d48;
       --transition: cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -28,54 +35,151 @@
     html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
       color: var(--ink);
       line-height: 1.55;
       overflow-x: hidden;
+      background: #fff;
+    }
+
+    /* ============ LAYOUT ============ */
+    .page {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+
+    /* ============ LEFT SIDE — HERO PANEL ============ */
+    .hero-panel {
       position: relative;
-      background: linear-gradient(-45deg, #1a1a2e, #16213e, #2a1a3e, #1a1a2e);
-      background-size: 400% 400%;
-      animation: bgShift 20s ease infinite;
+      overflow: hidden;
+      background: linear-gradient(160deg, #2a1a3e 0%, #0f0f1e 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 48px;
+      color: #fff;
     }
 
-    @keyframes bgShift {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    body::before {
+    .hero-panel::before {
       content: "";
-      position: fixed;
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1200&q=80') center/cover no-repeat;
+      opacity: 0.42;
+      filter: saturate(1.3);
+      z-index: 0;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 20% 20%, rgba(233, 69, 96, 0.25), transparent 45%),
-        radial-gradient(circle at 80% 80%, rgba(255, 143, 163, 0.18), transparent 45%),
-        url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=1600&q=80') center/cover no-repeat;
-      opacity: 0.55;
-      z-index: -2;
-      filter: saturate(1.1);
+        radial-gradient(circle at 20% 30%, rgba(233, 69, 96, 0.5), transparent 55%),
+        radial-gradient(circle at 80% 70%, rgba(244, 201, 93, 0.25), transparent 55%),
+        linear-gradient(180deg, rgba(15, 15, 30, 0.4), rgba(15, 15, 30, 0.75));
+      z-index: 1;
     }
 
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 460px;
+      text-align: center;
+    }
+
+    .hero-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 28px;
+    }
+
+    .hero-icon {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand-1), var(--brand-2), var(--gold));
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+      margin-bottom: 32px;
+      box-shadow: 0 24px 60px rgba(233, 69, 96, 0.55), 0 0 0 8px rgba(255, 255, 255, 0.06);
+      animation: iconFloat 4s ease-in-out infinite;
+    }
+    @keyframes iconFloat {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50%      { transform: translateY(-10px) rotate(2deg); }
+    }
+
+    .hero-panel h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent-1) 60%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-panel p {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.6;
+      margin-bottom: 40px;
+      max-width: 380px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .hero-stats .stat { text-align: center; }
+    .hero-stats .stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .hero-stats .stat .lbl {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 600;
+    }
+
+    /* Floating hearts on hero */
     .hearts {
-      position: fixed;
+      position: absolute;
       inset: 0;
       pointer-events: none;
       overflow: hidden;
-      z-index: -1;
+      z-index: 1;
     }
     .heart {
       position: absolute;
       bottom: -60px;
       font-size: 18px;
-      color: rgba(255, 143, 163, 0.55);
+      color: rgba(255, 143, 163, 0.6);
       animation: floatUp linear infinite;
-      filter: drop-shadow(0 0 8px rgba(233, 69, 96, 0.5));
+      filter: drop-shadow(0 0 10px rgba(233, 69, 96, 0.7));
       user-select: none;
     }
     @keyframes floatUp {
@@ -85,108 +189,97 @@
       100% { transform: translateY(-110vh) rotate(360deg) scale(1.2); opacity: 0; }
     }
 
-    .container {
-      position: relative;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+    /* ============ RIGHT SIDE — FORM PANEL ============ */
+    .form-panel {
+      background: #f8f8fc;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 40px;
+      overflow-y: auto;
+      max-height: 100vh;
+    }
+
+    .form-container {
+      max-width: 560px;
+      width: 100%;
+      background: #fff;
       border-radius: var(--radius-lg);
       padding: 44px 40px;
-      max-width: 580px;
-      width: 100%;
-      box-shadow: var(--shadow-card);
-      max-height: 95vh;
-      overflow-y: auto;
-      animation: cardIn 0.7s var(--transition) both;
-      scrollbar-width: thin;
-      scrollbar-color: var(--accent-2) transparent;
+      box-shadow: var(--shadow-form);
+      animation: slideUp 0.7s var(--transition) both;
+      position: relative;
+      overflow: hidden;
     }
-    .container::-webkit-scrollbar { width: 8px; }
-    .container::-webkit-scrollbar-track { background: transparent; }
-    .container::-webkit-scrollbar-thumb {
-      background: linear-gradient(var(--accent-1), var(--brand-2));
-      border-radius: 8px;
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    .container::before {
+    .form-container::before {
       content: "";
       position: absolute;
-      top: 0; left: 10%; right: 10%;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--brand-1), var(--accent-1), var(--brand-1), transparent);
-      border-radius: 0 0 8px 8px;
-      animation: glowSweep 3s ease-in-out infinite;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--brand-1), var(--brand-2), var(--gold), var(--brand-1));
+      background-size: 200% 100%;
+      animation: barMove 4s linear infinite;
     }
-    @keyframes glowSweep {
-      0%, 100% { opacity: 0.6; transform: scaleX(0.8); }
-      50%      { opacity: 1;   transform: scaleX(1.1); }
-    }
-
-    @keyframes cardIn {
-      from { opacity: 0; transform: translateY(30px) scale(0.97); }
-      to   { opacity: 1; transform: translateY(0)   scale(1); }
+    @keyframes barMove {
+      0% { background-position: 0% 0; }
+      100% { background-position: 200% 0; }
     }
 
-    .brand {
-      text-align: center;
-      margin-bottom: 28px;
+    .form-header {
+      margin-bottom: 32px;
       padding-bottom: 24px;
       border-bottom: 1px solid var(--line-soft);
-      position: relative;
+      text-align: center;
     }
-    .brand h1 {
-      font-size: 30px;
+    .form-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
       font-weight: 900;
-      letter-spacing: 3px;
-      margin-bottom: 6px;
-      background: linear-gradient(135deg, var(--brand-2), var(--brand-1) 40%, var(--accent-1) 70%, var(--brand-2));
-      background-size: 200% 200%;
+      color: var(--ink);
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+    .form-header p {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    /* Mobile logo — hidden on desktop */
+    .mobile-logo {
+      display: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--brand-2), var(--brand-1), var(--gold));
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: gradientMove 4s ease infinite;
     }
-    @keyframes gradientMove {
-      0%, 100% { background-position: 0% 50%; }
-      50%      { background-position: 100% 50%; }
-    }
-    .brand p {
-      font-size: 11px;
-      color: var(--ink-soft);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-    .brand p::before,
-    .brand p::after {
-      content: "";
-      display: inline-block;
-      width: 20px;
-      height: 1px;
-      background: var(--accent-2);
-      vertical-align: middle;
-      margin: 0 10px;
-    }
-
-    h2 { font-size: 22px; color: var(--ink); margin-bottom: 6px; font-weight: 700; letter-spacing: -0.3px; }
-    .subtitle { color: var(--ink-soft); margin-bottom: 26px; font-size: 14px; }
 
     .section-heading {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.8px;
       color: var(--brand-2);
-      margin: 26px 0 16px;
+      margin: 28px 0 16px;
     }
     .section-heading::before {
       content: "";
       width: 4px;
       height: 16px;
-      background: linear-gradient(var(--brand-1), var(--accent-1));
+      background: linear-gradient(var(--brand-1), var(--gold));
       border-radius: 4px;
     }
     .section-heading::after {
@@ -199,11 +292,9 @@
 
     fieldset { border: none; padding: 0; margin: 0; }
     legend {
-      position: absolute;
-      width: 1px; height: 1px;
-      padding: 0; margin: -1px;
-      overflow: hidden; clip: rect(0,0,0,0);
-      white-space: nowrap; border: 0;
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
 
     .field { margin-bottom: 18px; position: relative; }
@@ -214,7 +305,7 @@
       font-weight: 700;
       color: #333;
       margin-bottom: 8px;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.3px;
     }
     label .required { color: var(--brand-2); margin-left: 2px; }
     label .optional {
@@ -228,14 +319,14 @@
 
     input, select {
       width: 100%;
-      padding: 13px 16px;
+      padding: 14px 18px;
       border: 1.5px solid var(--line);
       border-radius: var(--radius-sm);
       font-size: 15px;
       font-family: inherit;
       background: #fafafe;
       color: var(--ink);
-      transition: all 0.25s var(--transition);
+      transition: all 0.3s var(--transition);
     }
     input::placeholder { color: #b8b8c8; }
     input:hover, select:hover { border-color: var(--accent-2); }
@@ -243,7 +334,7 @@
       outline: none;
       border-color: var(--brand-2);
       background: #fff;
-      box-shadow: 0 0 0 4px rgba(233, 69, 96, 0.14), 0 4px 12px rgba(233, 69, 96, 0.12);
+      box-shadow: 0 0 0 5px rgba(233, 69, 96, 0.12);
       transform: translateY(-1px);
     }
     input[aria-invalid="true"], select[aria-invalid="true"] {
@@ -256,8 +347,8 @@
       -webkit-appearance: none;
       background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23e94560' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 16px center;
-      padding-right: 42px;
+      background-position: right 18px center;
+      padding-right: 46px;
       cursor: pointer;
     }
 
@@ -267,14 +358,9 @@
       font-size: 12px;
       margin-top: 6px;
       font-weight: 500;
-      animation: shakeIn 0.35s var(--transition);
     }
     .error-msg.show { display: block; }
     .error-msg.show::before { content: "⚠ "; margin-right: 2px; }
-    @keyframes shakeIn {
-      0%   { transform: translateX(-4px); opacity: 0; }
-      100% { transform: translateX(0);    opacity: 1; }
-    }
 
     .grid-2 {
       display: grid;
@@ -298,55 +384,39 @@
       font-weight: 500;
       color: #444;
       cursor: pointer;
-      padding: 11px 14px;
+      padding: 12px 15px;
       border: 1.5px solid var(--line);
       border-radius: var(--radius-sm);
       background: #fafafe;
-      transition: all 0.22s var(--transition);
+      transition: all 0.25s var(--transition);
       user-select: none;
-      position: relative;
-      overflow: hidden;
-    }
-    .interest-item::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,77,109,0.08), rgba(255,143,163,0.08));
-      opacity: 0;
-      transition: opacity 0.25s;
     }
     .interest-item:hover {
       border-color: var(--accent-1);
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(233, 69, 96, 0.12);
+      box-shadow: 0 6px 16px rgba(233, 69, 96, 0.1);
     }
-    .interest-item:hover::after { opacity: 1; }
     .interest-item input[type="checkbox"] {
       width: 17px; height: 17px;
       accent-color: var(--brand-2);
       flex-shrink: 0;
       margin: 0;
       cursor: pointer;
-      position: relative;
-      z-index: 1;
-      transition: transform 0.2s;
     }
     .interest-item:has(input:checked) {
       border-color: var(--brand-2);
-      background: linear-gradient(135deg, rgba(255,77,109,0.09), rgba(255,143,163,0.05));
+      background: linear-gradient(135deg, rgba(255,77,109,0.12), rgba(255,143,163,0.06));
       color: var(--brand-3);
-      font-weight: 600;
+      font-weight: 700;
     }
-    .interest-item:has(input:checked)::after { opacity: 1; }
-    .interest-item:has(input:checked) input[type="checkbox"] { transform: scale(1.15); }
 
-    .range-group { margin-bottom: 20px; }
+    .range-group { margin-bottom: 22px; }
     .range-group label { margin-bottom: 12px; }
     .range-row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
+      gap: 14px;
+      padding: 14px 18px;
       background: #fafafe;
       border: 1.5px solid var(--line);
       border-radius: var(--radius-sm);
@@ -355,7 +425,7 @@
     .range-row:hover { border-color: var(--accent-2); }
     .range-row:focus-within {
       border-color: var(--brand-2);
-      box-shadow: 0 0 0 4px rgba(233, 69, 96, 0.12);
+      box-shadow: 0 0 0 5px rgba(233, 69, 96, 0.1);
     }
     .range-row input[type="range"] {
       flex: 1;
@@ -370,13 +440,12 @@
       min-width: 92px;
       text-align: center;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
       color: #fff;
       background: linear-gradient(135deg, var(--brand-2), var(--brand-1));
-      padding: 7px 12px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(233, 69, 96, 0.28);
-      letter-spacing: 0.3px;
+      padding: 8px 14px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 6px 16px rgba(233, 69, 96, 0.3);
     }
 
     .consent {
@@ -386,14 +455,12 @@
       font-size: 13px;
       color: var(--ink-soft);
       margin-bottom: 18px;
-      padding: 14px 16px;
+      padding: 16px 18px;
       background: #fafafe;
       border: 1.5px solid var(--line);
       border-radius: var(--radius-sm);
-      transition: border-color 0.2s;
       line-height: 1.5;
     }
-    .consent:hover { border-color: var(--accent-2); }
     .consent input[type="checkbox"] {
       width: 19px; height: 19px;
       margin-top: 1px;
@@ -404,21 +471,19 @@
     .consent a {
       color: var(--brand-2);
       text-decoration: none;
-      font-weight: 600;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
+      font-weight: 700;
     }
-    .consent a:hover { border-bottom-color: var(--brand-2); }
+    .consent a:hover { text-decoration: underline; }
 
     button[type="submit"] {
       position: relative;
       width: 100%;
-      padding: 16px;
+      padding: 18px;
       color: #fff;
       border: none;
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-pill);
       font-size: 16px;
-      font-weight: 700;
+      font-weight: 800;
       font-family: inherit;
       letter-spacing: 0.5px;
       cursor: pointer;
@@ -427,24 +492,24 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      background: linear-gradient(135deg, var(--brand-1), var(--brand-2) 50%, var(--brand-3));
+      background: linear-gradient(135deg, var(--brand-1) 0%, var(--brand-2) 50%, var(--brand-3) 100%);
       background-size: 200% 200%;
-      box-shadow: 0 12px 30px rgba(233, 69, 96, 0.45);
-      transition: all 0.3s var(--transition);
-      margin-top: 6px;
+      box-shadow: var(--shadow-btn);
+      transition: all 0.35s var(--transition);
+      margin-top: 8px;
     }
     button[type="submit"]::before {
       content: "";
       position: absolute;
       top: 0; left: -100%;
       width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
-      transition: left 0.55s ease;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.65s ease;
     }
     button[type="submit"]:hover:not(:disabled) {
       background-position: 100% 50%;
-      transform: translateY(-2px);
-      box-shadow: 0 16px 40px rgba(233, 69, 96, 0.55);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(233, 69, 96, 0.6);
     }
     button[type="submit"]:hover:not(:disabled)::before { left: 100%; }
     button[type="submit"]:active:not(:disabled) { transform: translateY(0) scale(0.99); }
@@ -466,51 +531,75 @@
     button[type="submit"].loading .spinner { display: inline-block; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    .success { display: none; text-align: center; padding: 30px 20px; }
-    .success.show { display: block; animation: cardIn 0.6s var(--transition) both; }
+    .success { display: none; text-align: center; padding: 40px 20px; }
+    .success.show { display: block; animation: slideUp 0.7s var(--transition) both; }
     .success .icon {
-      width: 84px; height: 84px;
+      width: 100px; height: 100px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+      background: linear-gradient(135deg, var(--brand-1), var(--brand-2), var(--gold));
       color: #fff;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 42px;
+      font-size: 52px;
       font-weight: 700;
-      margin-bottom: 20px;
-      box-shadow: 0 16px 40px rgba(233, 69, 96, 0.4);
-      animation: popIn 0.6s var(--transition) both, pulse 2.4s ease-in-out infinite 0.6s;
+      margin-bottom: 24px;
+      box-shadow: 0 24px 60px rgba(233, 69, 96, 0.5);
+      animation: popIn 0.7s var(--transition) both;
     }
     @keyframes popIn {
-      0%   { transform: scale(0); }
-      60%  { transform: scale(1.15); }
-      100% { transform: scale(1); }
+      0%   { transform: scale(0) rotate(-180deg); }
+      60%  { transform: scale(1.15) rotate(10deg); }
+      100% { transform: scale(1) rotate(0); }
     }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 16px 40px rgba(233, 69, 96, 0.4), 0 0 0 0 rgba(233, 69, 96, 0.5); }
-      50%      { box-shadow: 0 16px 40px rgba(233, 69, 96, 0.4), 0 0 0 20px rgba(233, 69, 96, 0); }
+    .success h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--ink);
+      margin-bottom: 12px;
     }
-    .success h2 { color: var(--ink); margin-bottom: 10px; font-size: 22px; }
-    .success p { color: var(--ink-soft); font-size: 14.5px; max-width: 360px; margin: 0 auto 20px; }
+    .success p {
+      color: var(--ink-soft);
+      font-size: 15px;
+      max-width: 380px;
+      margin: 0 auto 24px;
+    }
     .success .browse-btn {
       display: inline-block;
-      padding: 14px 32px;
+      padding: 16px 40px;
       background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
       color: #fff;
-      border: none;
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-pill);
       font-size: 15px;
-      font-weight: 700;
-      font-family: inherit;
-      cursor: pointer;
+      font-weight: 800;
       text-decoration: none;
-      box-shadow: 0 12px 30px rgba(233, 69, 96, 0.45);
-      transition: transform 0.15s, box-shadow 0.2s;
+      box-shadow: var(--shadow-btn);
+      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.5px;
     }
     .success .browse-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 40px rgba(233, 69, 96, 0.6);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(233, 69, 96, 0.65);
+    }
+
+    .error-banner {
+      display: none;
+      margin-top: 14px;
+      padding: 16px 18px;
+      background: linear-gradient(135deg, rgba(225, 29, 72, 0.08), rgba(225, 29, 72, 0.04));
+      border: 1.5px solid rgba(225, 29, 72, 0.3);
+      border-radius: var(--radius-sm);
+      color: var(--error);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .error-banner.show { display: block; }
+    .error-banner strong {
+      font-weight: 800;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 13.5px;
     }
 
     .honeypot {
@@ -527,10 +616,39 @@
       white-space: nowrap; border: 0;
     }
 
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 960px) {
+      .page { grid-template-columns: 1fr; }
+      .hero-panel {
+        min-height: 42vh;
+        padding: 48px 32px;
+      }
+      .hero-panel h2 { font-size: 32px; }
+      .hero-panel p { font-size: 15px; margin-bottom: 28px; }
+      .hero-icon { width: 90px; height: 90px; font-size: 46px; margin-bottom: 24px; }
+      .hero-stats { gap: 28px; padding-top: 24px; }
+      .hero-stats .stat .num { font-size: 22px; }
+      .form-panel { padding: 0; max-height: none; background: #fff; }
+      .form-container {
+        max-width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 40px 28px 60px;
+      }
+      .mobile-logo { display: block; }
+      .form-header h1 { font-size: 24px; }
+    }
+
     @media (max-width: 560px) {
-      .container { padding: 30px 22px; border-radius: 18px; }
-      .brand h1 { font-size: 24px; letter-spacing: 2px; }
-      h2 { font-size: 19px; }
+      .hero-panel { padding: 40px 24px; min-height: 38vh; }
+      .hero-panel h2 { font-size: 26px; }
+      .hero-panel p { font-size: 14px; }
+      .hero-icon { width: 76px; height: 76px; font-size: 38px; margin-bottom: 18px; }
+      .hero-logo { font-size: 11px; letter-spacing: 4px; margin-bottom: 20px; }
+      .hero-stats { gap: 20px; }
+      .hero-stats .stat .num { font-size: 18px; }
+      .hero-stats .stat .lbl { font-size: 10px; }
+      .form-container { padding: 32px 22px 50px; }
       .grid-2 { grid-template-columns: 1fr; gap: 16px; }
       .interests { grid-template-columns: 1fr; }
       .range-row { flex-wrap: wrap; }
@@ -543,266 +661,293 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
-      body { animation: none; }
     }
   </style>
 </head>
 <body>
-  <div class="hearts" aria-hidden="true" id="hearts"></div>
 
-  <main class="container">
-    <section id="form-wrapper" aria-labelledby="form-heading">
-      <header class="brand">
-        <h1>FIND TRUE LOVE</h1>
-        <p>Serious Dating</p>
-      </header>
+  <div class="page">
 
-      <h2 id="form-heading">Create Your Account</h2>
-      <p class="subtitle">18+ only. Serious dating for singles.</p>
-
-      <form id="signup-form" novalidate>
-        <div class="honeypot" aria-hidden="true">
-          <label for="bot-field">Leave this field empty</label>
-          <input type="text" id="bot-field" name="bot-field" tabindex="-1" autocomplete="off" />
+    <!-- LEFT — HERO PANEL -->
+    <aside class="hero-panel">
+      <div class="hearts" aria-hidden="true" id="hearts"></div>
+      <div class="hero-content">
+        <div class="hero-logo">Find True Love</div>
+        <div class="hero-icon" aria-hidden="true">💎</div>
+        <h2>Real Love<br>Starts Here</h2>
+        <p>Join thousands of serious singles looking for meaningful relationships — not games. Verified profiles. Real conversations.</p>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="num">50K+</div>
+            <div class="lbl">Members</div>
+          </div>
+          <div class="stat">
+            <div class="num">2K+</div>
+            <div class="lbl">Matches Daily</div>
+          </div>
+          <div class="stat">
+            <div class="num">4.9★</div>
+            <div class="lbl">Rated</div>
+          </div>
         </div>
+      </div>
+    </aside>
 
-        <fieldset>
-          <legend>Account details</legend>
+    <!-- RIGHT — FORM PANEL -->
+    <main class="form-panel">
+      <div class="form-container">
+        <section id="form-wrapper">
+          <header class="form-header">
+            <div class="mobile-logo">💎 FIND TRUE LOVE</div>
+            <h1>Create Your Account</h1>
+            <p>18+ only. Takes less than 2 minutes.</p>
+          </header>
 
-          <h3 class="section-heading">Basic Information</h3>
-
-          <div class="field">
-            <label for="name">Your Name <span class="required" aria-hidden="true">*</span></label>
-            <input type="text" id="name" name="name" required autocomplete="name"
-              placeholder="John or Jane" aria-required="true" />
-            <p class="error-msg" id="name-error" role="alert"></p>
-          </div>
-
-          <div class="field">
-            <label for="dob">Date of Birth <span class="required" aria-hidden="true">*</span></label>
-            <input type="date" id="dob" name="dob" required autocomplete="bday" aria-required="true" />
-            <p class="error-msg" id="dob-error" role="alert"></p>
-          </div>
-
-          <div class="grid-2">
-            <div class="field">
-              <label for="gender">I am <span class="required" aria-hidden="true">*</span></label>
-              <select id="gender" name="gender" required aria-required="true">
-                <option value="">Select...</option>
-                <option>A man</option>
-                <option>A woman</option>
-                <option>Other / Prefer to self-describe</option>
-              </select>
-              <p class="error-msg" id="gender-error" role="alert"></p>
+          <form id="signup-form" novalidate>
+            <div class="honeypot" aria-hidden="true">
+              <label for="bot-field">Leave this field empty</label>
+              <input type="text" id="bot-field" name="bot-field" tabindex="-1" autocomplete="off" />
             </div>
 
-            <div class="field">
-              <label for="relationship_goal_top">Looking for <span class="required" aria-hidden="true">*</span></label>
-              <select id="relationship_goal_top" name="relationship_goal_top" required aria-required="true">
-                <option value="">Select...</option>
-                <option>Marriage</option>
-                <option>Long-term relationship</option>
-                <option>Serious dating</option>
-                <option>Friendship first</option>
-              </select>
-              <p class="error-msg" id="relationship_goal_top-error" role="alert"></p>
+            <fieldset>
+              <legend>Account details</legend>
+
+              <h3 class="section-heading">Basic Information</h3>
+
+              <div class="field">
+                <label for="name">Your Name <span class="required" aria-hidden="true">*</span></label>
+                <input type="text" id="name" name="name" required autocomplete="name"
+                  placeholder="John or Jane" aria-required="true" />
+                <p class="error-msg" id="name-error" role="alert"></p>
+              </div>
+
+              <div class="grid-2">
+                <div class="field">
+                  <label for="gender">I am <span class="required" aria-hidden="true">*</span></label>
+                  <select id="gender" name="gender" required aria-required="true">
+                    <option value="">Select...</option>
+                    <option>A man</option>
+                    <option>A woman</option>
+                    <option>Other / Prefer to self-describe</option>
+                  </select>
+                  <p class="error-msg" id="gender-error" role="alert"></p>
+                </div>
+
+                <div class="field">
+                  <label for="relationship_goal_top">Looking for <span class="required" aria-hidden="true">*</span></label>
+                  <select id="relationship_goal_top" name="relationship_goal_top" required aria-required="true">
+                    <option value="">Select...</option>
+                    <option>Marriage</option>
+                    <option>Long-term relationship</option>
+                    <option>Serious dating</option>
+                    <option>Friendship first</option>
+                  </select>
+                  <p class="error-msg" id="relationship_goal_top-error" role="alert"></p>
+                </div>
+              </div>
+
+              <h3 class="section-heading">Location</h3>
+
+              <div class="grid-2">
+                <div class="field">
+                  <label for="country">Country <span class="required" aria-hidden="true">*</span></label>
+                  <select id="country" name="country" required aria-required="true">
+                    <option value="">Select country...</option>
+                    <optgroup label="Africa">
+                      <option>Kenya</option><option>Nigeria</option><option>South Africa</option>
+                      <option>Ghana</option><option>Uganda</option><option>Tanzania</option>
+                      <option>Rwanda</option><option>Ethiopia</option><option>Zambia</option>
+                      <option>Zimbabwe</option><option>Senegal</option><option>Ivory Coast</option>
+                      <option>Cameroon</option><option>Other African country</option>
+                    </optgroup>
+                    <optgroup label="Europe">
+                      <option>United Kingdom</option><option>Germany</option><option>France</option>
+                      <option>Netherlands</option><option>Italy</option><option>Spain</option>
+                      <option>Ireland</option><option>Other European country</option>
+                    </optgroup>
+                    <optgroup label="North America">
+                      <option>United States</option><option>Canada</option>
+                    </optgroup>
+                    <optgroup label="Other Regions">
+                      <option>Australia</option><option>Middle East</option><option>Asia</option>
+                      <option>Latin America</option><option>Other</option>
+                    </optgroup>
+                  </select>
+                  <p class="error-msg" id="country-error" role="alert"></p>
+                </div>
+
+                <div class="field">
+                  <label for="city">City / Town <span class="required" aria-hidden="true">*</span></label>
+                  <input type="text" id="city" name="city" required autocomplete="address-level2"
+                    placeholder="Nairobi" aria-required="true" />
+                  <p class="error-msg" id="city-error" role="alert"></p>
+                </div>
+              </div>
+
+              <h3 class="section-heading">Background</h3>
+
+              <div class="grid-2">
+                <div class="field">
+                  <label for="education">Education <span class="optional">optional</span></label>
+                  <select id="education" name="education">
+                    <option value="">Prefer not to say</option>
+                    <option>High school</option>
+                    <option>College diploma</option>
+                    <option>Bachelor's degree</option>
+                    <option>Master's degree</option>
+                    <option>Doctorate</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="occupation">Occupation <span class="optional">optional</span></label>
+                  <input type="text" id="occupation" name="occupation"
+                    placeholder="e.g. Teacher, Engineer" />
+                </div>
+              </div>
+
+              <h3 class="section-heading">Partner Preferences</h3>
+
+              <div class="range-group">
+                <label for="age_range_min">Preferred Age Range</label>
+                <div class="range-row">
+                  <input type="range" id="age_range_min" name="age_range_min"
+                    min="18" max="80" value="25" step="1" aria-label="Minimum preferred age" />
+                  <input type="range" id="age_range_max" name="age_range_max"
+                    min="18" max="80" value="45" step="1" aria-label="Maximum preferred age" />
+                  <span class="range-value" id="age-range-display">25 – 45</span>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="pref_country">Preferred Partner Location <span class="optional">optional</span></label>
+                <select id="pref_country" name="pref_country">
+                  <option value="">Anywhere</option>
+                  <option>Same country as me</option>
+                  <option>Same continent as me</option>
+                  <option>Africa</option>
+                  <option>Europe</option>
+                  <option>North America</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <h3 class="section-heading">Interests <span class="optional">(select all that apply)</span></h3>
+
+              <div class="interests" role="group" aria-label="Interests">
+                <label class="interest-item"><input type="checkbox" name="interests" value="Travel" /> Travel</label>
+                <label class="interest-item"><input type="checkbox" name="interests" value="Music" /> Music</label>
+                <label class="interest-item"><input type="checkbox" name="interests" value="Movies" /> Movies</label>
+                <label class="interest-item"><input type="checkbox" name="interests" value="Cooking" /> Cooking</label>
+                <label class="interest-item"><input type="checkbox" name="interests" value="Fitness" /> Fitness</label>
+                <label class="interest-item"><input type="checkbox" name="interests" value="Reading" /> Reading</label>
+                <label class="interest-item"><input type="checkbox" name="interests" value="Business" /> Business</label>
+                <label class="interest-item"><input type="checkbox" name="interests" value="Church" /> Church / Faith</label>
+                <label class="interest-item"><input type="checkbox" name="interests" value="Sports" /> Sports</label>
+                <label class="interest-item"><input type="checkbox" name="interests" value="Art" /> Art &amp; Culture</label>
+              </div>
+
+              <h3 class="section-heading">Lifestyle</h3>
+
+              <div class="grid-2">
+                <div class="field">
+                  <label for="smoking">Smoking</label>
+                  <select id="smoking" name="smoking">
+                    <option value="">Prefer not to say</option>
+                    <option>Never</option>
+                    <option>Occasionally</option>
+                    <option>Regularly</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="drinking">Drinking</label>
+                  <select id="drinking" name="drinking">
+                    <option value="">Prefer not to say</option>
+                    <option>Never</option>
+                    <option>Socially</option>
+                    <option>Regularly</option>
+                  </select>
+                </div>
+              </div>
+
+              <h3 class="section-heading">Contact Details</h3>
+
+              <div class="field">
+                <label for="email">Email Address <span class="required" aria-hidden="true">*</span></label>
+                <input type="email" id="email" name="email" required autocomplete="email"
+                  placeholder="you@example.com" aria-required="true" />
+                <p class="error-msg" id="email-error" role="alert"></p>
+              </div>
+
+              <div class="grid-2">
+                <div class="field">
+                  <label for="phone">Phone Number <span class="required" aria-hidden="true">*</span></label>
+                  <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel"
+                    placeholder="+254 712 345 678" aria-required="true" />
+                  <p class="error-msg" id="phone-error" role="alert"></p>
+                </div>
+
+                <div class="field">
+                  <label for="contact_method">Preferred Contact <span class="required" aria-hidden="true">*</span></label>
+                  <select id="contact_method" name="contact_method" required aria-required="true">
+                    <option value="">Select...</option>
+                    <option>WhatsApp</option>
+                    <option>Phone call</option>
+                    <option>Email</option>
+                    <option>Any</option>
+                  </select>
+                  <p class="error-msg" id="contact_method-error" role="alert"></p>
+                </div>
+              </div>
+
+              <h3 class="section-heading">Confirmation</h3>
+
+              <div class="field">
+                <label for="age_confirmed">Are you 18 or older? <span class="required" aria-hidden="true">*</span></label>
+                <select id="age_confirmed" name="age_confirmed" required aria-required="true">
+                  <option value="">Select...</option>
+                  <option value="yes">Yes, I am 18+</option>
+                  <option value="no">No</option>
+                </select>
+                <p class="error-msg" id="age_confirmed-error" role="alert"></p>
+              </div>
+
+              <div class="consent">
+                <input type="checkbox" id="consent" name="consent" required aria-required="true" />
+                <label for="consent">
+                  I agree to the <a href="/terms" target="_blank" rel="noopener">Terms of Service</a>
+                  and <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.
+                </label>
+              </div>
+              <p class="error-msg" id="consent-error" role="alert"></p>
+            </fieldset>
+
+            <button type="submit" id="submit-btn">
+              <span class="spinner" aria-hidden="true"></span>
+              <span class="btn-label">Create My Account</span>
+            </button>
+
+            <div class="error-banner" id="error-banner" role="alert">
+              <strong id="error-banner-title">Submission failed</strong>
+              <span id="error-banner-detail">Please try again.</span>
             </div>
-          </div>
 
-          <h3 class="section-heading">Location</h3>
+            <p class="sr-only" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </section>
 
-          <div class="grid-2">
-            <div class="field">
-              <label for="country">Country <span class="required" aria-hidden="true">*</span></label>
-              <select id="country" name="country" required aria-required="true">
-                <option value="">Select country...</option>
-                <optgroup label="Africa">
-                  <option>Kenya</option><option>Nigeria</option><option>South Africa</option>
-                  <option>Ghana</option><option>Uganda</option><option>Tanzania</option>
-                  <option>Rwanda</option><option>Ethiopia</option><option>Zambia</option>
-                  <option>Zimbabwe</option><option>Senegal</option><option>Ivory Coast</option>
-                  <option>Cameroon</option><option>Other African country</option>
-                </optgroup>
-                <optgroup label="Europe">
-                  <option>United Kingdom</option><option>Germany</option><option>France</option>
-                  <option>Netherlands</option><option>Italy</option><option>Spain</option>
-                  <option>Ireland</option><option>Other European country</option>
-                </optgroup>
-                <optgroup label="North America">
-                  <option>United States</option><option>Canada</option>
-                </optgroup>
-                <optgroup label="Other Regions">
-                  <option>Australia</option><option>Middle East</option><option>Asia</option>
-                  <option>Latin America</option><option>Other</option>
-                </optgroup>
-              </select>
-              <p class="error-msg" id="country-error" role="alert"></p>
-            </div>
+        <section id="success" class="success" role="status" aria-live="polite" hidden>
+          <div class="icon" aria-hidden="true">✓</div>
+          <h2>Welcome to FIND TRUE LOVE</h2>
+          <p>Your details have been received. We'll review your profile and be in touch within 24 hours.</p>
+          <a href="join.html" class="browse-btn">Continue →</a>
+        </section>
+      </div>
+    </main>
 
-            <div class="field">
-              <label for="city">City / Town <span class="required" aria-hidden="true">*</span></label>
-              <input type="text" id="city" name="city" required autocomplete="address-level2"
-                placeholder="Nairobi" aria-required="true" />
-              <p class="error-msg" id="city-error" role="alert"></p>
-            </div>
-          </div>
-
-          <h3 class="section-heading">Background</h3>
-
-          <div class="grid-2">
-            <div class="field">
-              <label for="education">Education <span class="optional">optional</span></label>
-              <select id="education" name="education">
-                <option value="">Prefer not to say</option>
-                <option>High school</option>
-                <option>College diploma</option>
-                <option>Bachelor's degree</option>
-                <option>Master's degree</option>
-                <option>Doctorate</option>
-                <option>Other</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="occupation">Occupation <span class="optional">optional</span></label>
-              <input type="text" id="occupation" name="occupation"
-                placeholder="e.g. Teacher, Engineer" />
-            </div>
-          </div>
-
-          <h3 class="section-heading">Partner Preferences</h3>
-
-          <div class="range-group">
-            <label for="age_range_min">Preferred Age Range</label>
-            <div class="range-row">
-              <input type="range" id="age_range_min" name="age_range_min"
-                min="18" max="80" value="25" step="1" aria-label="Minimum preferred age" />
-              <input type="range" id="age_range_max" name="age_range_max"
-                min="18" max="80" value="45" step="1" aria-label="Maximum preferred age" />
-              <span class="range-value" id="age-range-display">25 – 45</span>
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="pref_country">Preferred Partner Location <span class="optional">optional</span></label>
-            <select id="pref_country" name="pref_country">
-              <option value="">Anywhere</option>
-              <option>Same country as me</option>
-              <option>Same continent as me</option>
-              <option>Africa</option>
-              <option>Europe</option>
-              <option>North America</option>
-              <option>Other</option>
-            </select>
-          </div>
-
-          <h3 class="section-heading">Interests <span class="optional">(select all that apply)</span></h3>
-
-          <div class="interests" role="group" aria-label="Interests">
-            <label class="interest-item"><input type="checkbox" name="interests" value="Travel" /> Travel</label>
-            <label class="interest-item"><input type="checkbox" name="interests" value="Music" /> Music</label>
-            <label class="interest-item"><input type="checkbox" name="interests" value="Movies" /> Movies</label>
-            <label class="interest-item"><input type="checkbox" name="interests" value="Cooking" /> Cooking</label>
-            <label class="interest-item"><input type="checkbox" name="interests" value="Fitness" /> Fitness</label>
-            <label class="interest-item"><input type="checkbox" name="interests" value="Reading" /> Reading</label>
-            <label class="interest-item"><input type="checkbox" name="interests" value="Business" /> Business</label>
-            <label class="interest-item"><input type="checkbox" name="interests" value="Church" /> Church / Faith</label>
-            <label class="interest-item"><input type="checkbox" name="interests" value="Sports" /> Sports</label>
-            <label class="interest-item"><input type="checkbox" name="interests" value="Art" /> Art &amp; Culture</label>
-          </div>
-
-          <h3 class="section-heading">Lifestyle</h3>
-
-          <div class="grid-2">
-            <div class="field">
-              <label for="smoking">Smoking</label>
-              <select id="smoking" name="smoking">
-                <option value="">Prefer not to say</option>
-                <option>Never</option>
-                <option>Occasionally</option>
-                <option>Regularly</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="drinking">Drinking</label>
-              <select id="drinking" name="drinking">
-                <option value="">Prefer not to say</option>
-                <option>Never</option>
-                <option>Socially</option>
-                <option>Regularly</option>
-              </select>
-            </div>
-          </div>
-
-          <h3 class="section-heading">Contact Details</h3>
-
-          <div class="field">
-            <label for="email">Email Address <span class="required" aria-hidden="true">*</span></label>
-            <input type="email" id="email" name="email" required autocomplete="email"
-              placeholder="you@example.com" aria-required="true" />
-            <p class="error-msg" id="email-error" role="alert"></p>
-          </div>
-
-          <div class="grid-2">
-            <div class="field">
-              <label for="phone">Phone Number <span class="required" aria-hidden="true">*</span></label>
-              <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel"
-                placeholder="+254 712 345 678" aria-required="true" />
-              <p class="error-msg" id="phone-error" role="alert"></p>
-            </div>
-
-            <div class="field">
-              <label for="contact_method">Preferred Contact <span class="required" aria-hidden="true">*</span></label>
-              <select id="contact_method" name="contact_method" required aria-required="true">
-                <option value="">Select...</option>
-                <option>WhatsApp</option>
-                <option>Phone call</option>
-                <option>Email</option>
-                <option>Any</option>
-              </select>
-              <p class="error-msg" id="contact_method-error" role="alert"></p>
-            </div>
-          </div>
-
-          <h3 class="section-heading">Confirmation</h3>
-
-          <div class="field">
-            <label for="age_confirmed">Are you 18 or older? <span class="required" aria-hidden="true">*</span></label>
-            <select id="age_confirmed" name="age_confirmed" required aria-required="true">
-              <option value="">Select...</option>
-              <option value="yes">Yes, I am 18+</option>
-              <option value="no">No</option>
-            </select>
-            <p class="error-msg" id="age_confirmed-error" role="alert"></p>
-          </div>
-
-          <div class="consent">
-            <input type="checkbox" id="consent" name="consent" required aria-required="true" />
-            <label for="consent">
-              I agree to the <a href="/terms" target="_blank" rel="noopener">Terms of Service</a>
-              and <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.
-            </label>
-          </div>
-          <p class="error-msg" id="consent-error" role="alert"></p>
-        </fieldset>
-
-        <button type="submit" id="submit-btn">
-          <span class="spinner" aria-hidden="true"></span>
-          <span class="btn-label">Create Account</span>
-        </button>
-
-        <p class="sr-only" id="form-status" role="status" aria-live="polite"></p>
-      </form>
-    </section>
-
-    <section id="success" class="success" role="status" aria-live="polite" hidden>
-      <div class="icon" aria-hidden="true">✓</div>
-      <h2>Welcome to FIND TRUE LOVE</h2>
-      <p>Your details have been received. We'll review your profile and be in touch within 24 hours.</p>
-      <a href="join.html" class="browse-btn">Continue →</a>
-    </section>
-  </main>
+  </div>
 
   <script>
     (function () {
@@ -810,17 +955,17 @@
 
       (function spawnHearts() {
         const container = document.getElementById('hearts');
-        const symbols = ['❤', '♥', '❤', '💕', '❤'];
-        const count = window.innerWidth < 560 ? 8 : 14;
+        const symbols = ['❤', '♥', '❤', '💕', '💖', '💗'];
+        const count = window.innerWidth < 960 ? 10 : 16;
         for (let i = 0; i < count; i++) {
           const h = document.createElement('span');
           h.className = 'heart';
           h.textContent = symbols[Math.floor(Math.random() * symbols.length)];
           h.style.left = Math.random() * 100 + '%';
-          h.style.fontSize = (12 + Math.random() * 20) + 'px';
-          h.style.animationDuration = (12 + Math.random() * 14) + 's';
-          h.style.animationDelay = (Math.random() * 12) + 's';
-          h.style.opacity = 0.3 + Math.random() * 0.4;
+          h.style.fontSize = (14 + Math.random() * 22) + 'px';
+          h.style.animationDuration = (14 + Math.random() * 16) + 's';
+          h.style.animationDelay = (Math.random() * 14) + 's';
+          h.style.opacity = 0.35 + Math.random() * 0.4;
           container.appendChild(h);
         }
       })();
@@ -828,7 +973,6 @@
       const CONFIG = {
         endpoint: '/api/notify-signup',
         phonePattern: /^\+?[\d\s\-()]{7,20}$/,
-        minAge: 18,
       };
 
       const form = document.getElementById('signup-form');
@@ -837,6 +981,9 @@
       const formWrapper = document.getElementById('form-wrapper');
       const successEl = document.getElementById('success');
       const formStatus = document.getElementById('form-status');
+      const errorBanner = document.getElementById('error-banner');
+      const errorBannerTitle = document.getElementById('error-banner-title');
+      const errorBannerDetail = document.getElementById('error-banner-detail');
 
       const ageMin = document.getElementById('age_range_min');
       const ageMax = document.getElementById('age_range_max');
@@ -862,16 +1009,17 @@
         form.querySelectorAll('[aria-invalid="true"]').forEach((el) => {
           el.setAttribute('aria-invalid', 'false');
         });
+        hideErrorBanner();
       };
 
-      const calculateAge = (dobString) => {
-        const dob = new Date(dobString);
-        if (isNaN(dob.getTime())) return null;
-        const today = new Date();
-        let age = today.getFullYear() - dob.getFullYear();
-        const m = today.getMonth() - dob.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
-        return age;
+      const showErrorBanner = (title, detail) => {
+        errorBannerTitle.textContent = title;
+        errorBannerDetail.textContent = detail;
+        errorBanner.classList.add('show');
+      };
+
+      const hideErrorBanner = () => {
+        errorBanner.classList.remove('show');
       };
 
       const updateAgeDisplay = () => {
@@ -897,19 +1045,8 @@
         };
 
         if (!payload.name.trim()) fail('name', 'Please enter your name.');
-
-        if (!payload.dob) {
-          fail('dob', 'Please enter your date of birth.');
-        } else {
-          const age = calculateAge(payload.dob);
-          if (age === null) fail('dob', 'Please enter a valid date.');
-          else if (age < CONFIG.minAge) fail('dob', `You must be at least ${CONFIG.minAge} years old.`);
-          else if (age > 120) fail('dob', 'Please enter a valid date of birth.');
-        }
-
         if (!payload.gender) fail('gender', 'Please select an option.');
         if (!payload.relationship_goal_top) fail('relationship_goal_top', 'Please select what you are looking for.');
-
         if (!payload.country) fail('country', 'Please select your country.');
         if (!payload.city.trim()) fail('city', 'Please enter your city or town.');
 
@@ -939,7 +1076,7 @@
       const setLoading = (isLoading) => {
         submitBtn.disabled = isLoading;
         submitBtn.classList.toggle('loading', isLoading);
-        btnLabel.textContent = isLoading ? 'Creating account...' : 'Create Account';
+        btnLabel.textContent = isLoading ? 'Creating account...' : 'Create My Account';
       };
 
       const showSuccess = () => {
@@ -976,6 +1113,7 @@
 
         setLoading(true);
         formStatus.textContent = 'Submitting your details...';
+        hideErrorBanner();
 
         try {
           const response = await fetch(CONFIG.endpoint, {
@@ -984,19 +1122,60 @@
             body: JSON.stringify(payload),
           });
 
-          if (!response.ok) throw new Error(`Server responded with ${response.status}`);
+          const rawText = await response.text();
+          let responseData = null;
+
+          try {
+            responseData = JSON.parse(rawText);
+          } catch (parseErr) {
+            throw { type: 'not-json', status: response.status, body: rawText.slice(0, 200) };
+          }
+
+          if (!response.ok) {
+            throw {
+              type: 'http-error',
+              status: response.status,
+              error: responseData.error || 'Server rejected the submission'
+            };
+          }
+
+          if (!responseData.ok) {
+            throw { type: 'app-error', error: responseData.error || 'The server returned an error' };
+          }
+
           showSuccess();
         } catch (error) {
           console.error('Signup error:', error);
           formStatus.textContent = 'Submission failed. Please try again.';
           setLoading(false);
 
-          const banner = document.createElement('p');
-          banner.className = 'error-msg show';
-          banner.setAttribute('role', 'alert');
-          banner.textContent = 'Something went wrong. Please check your connection and try again.';
-          submitBtn.insertAdjacentElement('beforebegin', banner);
-          setTimeout(() => banner.remove(), 6000);
+          if (error && error.type === 'not-json') {
+            showErrorBanner(
+              'Server returned an unexpected response',
+              `HTTP ${error.status} — The Netlify Function may not be deployed. Check the Functions tab in Netlify.`
+            );
+          } else if (error && error.type === 'http-error') {
+            if (error.status === 404) {
+              showErrorBanner(
+                'Endpoint not found (404)',
+                'The signup function is missing. Make sure netlify.toml and netlify/functions/notify-signup.js exist, then redeploy.'
+              );
+            } else if (error.status === 500) {
+              showErrorBanner(
+                'Server error (500)',
+                error.error || 'Check the Netlify Function logs — usually the Telegram token or chat ID is missing.'
+              );
+            } else {
+              showErrorBanner(`Server responded with ${error.status}`, error.error || 'Please try again.');
+            }
+          } else if (error && error.type === 'app-error') {
+            showErrorBanner('Submission failed', error.error);
+          } else {
+            showErrorBanner(
+              'Connection failed',
+              'The server could not be reached. Check your internet connection and try again.'
+            );
+          }
         }
       });
 
@@ -1005,6 +1184,7 @@
         if (name && document.getElementById(`${name}-error`)) {
           setError(name, '');
         }
+        hideErrorBanner();
       });
     })();
   </script>
